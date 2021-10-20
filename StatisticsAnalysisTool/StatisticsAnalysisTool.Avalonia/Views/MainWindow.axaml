@@ -21,6 +21,13 @@
                 <ExperimentalAcrylicMaterial BackgroundSource="Digger" TintColor="Black" TintOpacity="1" MaterialOpacity="0.90" />
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
+
+        <Button Margin="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <PathIcon Data="{StaticResource test.icon}" />
+        </Button>
+
+        <PathIcon Data="{StaticResource test.icon}" />
+
     </Panel>
 
 	<!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->

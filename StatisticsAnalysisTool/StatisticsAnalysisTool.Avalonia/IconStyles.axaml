@@ -1,0 +1,18 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+	<!-- Icons: http://avaloniaui.github.io/icons.html -->
+	<!-- Icons: https://iconify.design/ -->
+	<Style>
+        <Style.Resources>
+            <StreamGeometry x:Key="test.icon">M8.78 8.47a.75.75 0 0 1 0 1.06L7.51 10.802l1.69 1.69l1.27-1.272a.75.75 0 1 1 1.061 1.06l-1.276 1.277a1.49 1.49 0 0 1-.1 1.997l-.3.3a4.037 4.037 0 0 1-5.128.48L3.28 17.78a.75.75 0 0 1-1.06-1.06l1.445-1.446a4.037 4.037 0 0 1 .481-5.127l.3-.3a1.49 1.49 0 0 1 1.997-.1L7.72 8.47a.75.75 0 0 1 1.06 0z</StreamGeometry>
+            <!--<StreamGeometry x:Key="test.icon"></StreamGeometry>-->
+        </Style.Resources>
+    </Style>
+</Styles>
