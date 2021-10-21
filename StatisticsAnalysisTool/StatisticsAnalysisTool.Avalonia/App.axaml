@@ -8,6 +8,8 @@
 
     <Application.Styles>
         <FluentTheme Mode="Dark"/>
+        <StyleInclude Source="avares://StatisticsAnalysisTool.Avalonia/ColorStyles.axaml" />
         <StyleInclude Source="avares://StatisticsAnalysisTool.Avalonia/IconStyles.axaml" />
+        <StyleInclude Source="avares://StatisticsAnalysisTool.Avalonia/MainStyles.axaml" />
     </Application.Styles>
 </Application>
