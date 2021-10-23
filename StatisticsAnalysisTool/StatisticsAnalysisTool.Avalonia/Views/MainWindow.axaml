@@ -26,18 +26,40 @@
                 <Label Content="..." FontSize="22" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" HorizontalAlignment="Right" Margin="0,0,120,0" />
             </DockPanel>
             <DockPanel LastChildFill="True" DockPanel.Dock="Left">
-				<StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
-                    <Label Content="Menu" FontSize="12" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.2}" />
-                    <Button Classes="MainMenu">
-                        <PathIcon Data="{StaticResource Icon.Button.MainMenu}" />
-                    </Button>
-                    <Button Classes="MainMenu">
-                        <PathIcon Data="{StaticResource Icon.Button.MainMenu}" />
-                    </Button>
-                    <Button Classes="MainMenu">
-                        <PathIcon Data="{StaticResource Icon.Button.MainMenu}" />
-                    </Button>
-                    <Separator Height="1" Background="{StaticResource SolidColorBrush.Foreground.2}" />
+				<StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
+                        <Label Content="Main Menü" FontSize="12" FontWeight="Bold" Margin="0,25,0,5" Foreground="{StaticResource SolidColorBrush.Foreground.2}" />
+                        <StackPanel Classes="MainMenu">
+                            <PathIcon Data="{StaticResource Icon.Button.MainMenu}" VerticalAlignment="Center" Margin="8,5,10,5" />
+						    <TextBlock Text="Item Suche" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" />
+                        </StackPanel>
+                        <StackPanel Classes="MainMenu">
+                            <PathIcon Data="{StaticResource Icon.Button.MainMenu}" VerticalAlignment="Center" Margin="8,5,10,5" />
+                            <TextBlock Text="Main dfnsjka ndsjakn" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" />
+                        </StackPanel>
+                        <StackPanel Classes="MainMenu">
+                            <PathIcon Data="{StaticResource Icon.Button.MainMenu}" VerticalAlignment="Center" Margin="8,5,10,5" />
+                            <TextBlock Text="Main dfnsjka ndsjakn dfs jklfdsfdsajkl afsd" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" />
+                        </StackPanel>
+                        <Separator Classes="MainMenu" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
+                        <Label Content="Main Menü" FontSize="12" FontWeight="Bold" Margin="0,10,0,5" Foreground="{StaticResource SolidColorBrush.Foreground.2}" />
+                        <StackPanel Classes="MainMenu">
+                            <PathIcon Data="{StaticResource Icon.Button.MainMenu}" VerticalAlignment="Center" Margin="8,5,10,5" />
+                            <TextBlock Text="Item Suche" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" />
+                        </StackPanel>
+                        <StackPanel Classes="MainMenu">
+                            <PathIcon Data="{StaticResource Icon.Button.MainMenu}" VerticalAlignment="Center" Margin="8,5,10,5" />
+                            <TextBlock Text="Main dfnsjka ndsjakn" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" />
+                        </StackPanel>
+                        <StackPanel Classes="MainMenu">
+                            <PathIcon Data="{StaticResource Icon.Button.MainMenu}" VerticalAlignment="Center" Margin="8,5,10,5" />
+                            <TextBlock Text="Main dfnsjka ndsjakn dfs jklfdsfdsajkl afsd" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" />
+                        </StackPanel>
+                        <Separator Classes="MainMenu" />
+                    </StackPanel>
                 </StackPanel>
             </DockPanel>
             <DockPanel LastChildFill="True" DockPanel.Dock="Right">

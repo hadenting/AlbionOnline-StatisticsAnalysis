@@ -11,12 +11,16 @@
 
     <!-- Add Styles Here -->
 
-    <Style Selector="Button.MainMenu">
-        <Setter Property="Height" Value="50"/>
-        <Setter Property="FontSize" Value="25" />
-        <Setter Property="CornerRadius" Value="0" />
-        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.1}"/>
+    <Style Selector="StackPanel.MainMenu">
+		<Setter Property="Orientation" Value="Horizontal" />
         <Setter Property="Background" Value="transparent"/>
+        <Setter Property="Margin" Value="0,5,0,5"/>
+    </Style>
+
+    <Style Selector="Separator.MainMenu">
+		<Setter Property="Height" Value="1" />
+        <Setter Property="Background" Value="{StaticResource SolidColorBrush.Foreground.2}"/>
+        <Setter Property="Margin" Value="0,20,0,10"/>
     </Style>
 
 </Styles>
