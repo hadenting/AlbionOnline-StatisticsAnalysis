@@ -3,11 +3,13 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <ApplicationIcon>Assets\sat-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
     <None Remove=".gitignore" />
+    <None Remove="Assets\sat-icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.8" />
