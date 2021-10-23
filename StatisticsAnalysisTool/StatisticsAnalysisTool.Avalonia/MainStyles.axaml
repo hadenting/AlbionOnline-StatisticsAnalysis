@@ -13,11 +13,10 @@
 
     <Style Selector="Button.MainMenu">
         <Setter Property="Height" Value="50"/>
-        <Setter Property="Width" Value="100" />
         <Setter Property="FontSize" Value="25" />
         <Setter Property="CornerRadius" Value="0" />
-        <Setter Property="Foreground" Value="{StaticResource MainForegroundBrush}"/>
-        <Setter Property="Background" Value="{StaticResource SolidColorBrush.ControlNormal}"/>
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.1}"/>
+        <Setter Property="Background" Value="transparent"/>
     </Style>
 
 </Styles>

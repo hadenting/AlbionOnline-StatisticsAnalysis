@@ -11,7 +11,8 @@
         <Style.Resources>
 
             <!-- Colors -->
-            <Color x:Key="MainForegroundColor">#FFDEDEEA</Color>
+            <Color x:Key="Colors.Foreground.1">#FFDEDEEA</Color>
+            <Color x:Key="Colors.Foreground.2">#6e6e6e</Color>
 
             <Color x:Key="Colors.Background.1">#FF636373</Color>
             <Color x:Key="Colors.Background.2">#FF565666</Color>
@@ -26,7 +27,8 @@
             <Color x:Key="Colors.ControlPressed">#ff57b6e0</Color>
 
             <!-- Avalonia brushes -->
-            <SolidColorBrush x:Key="MainForegroundBrush" Color="{DynamicResource MainForegroundColor}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.1" Color="{DynamicResource Colors.Foreground.1}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.2" Color="{DynamicResource Colors.Foreground.2}" />
 
             <SolidColorBrush x:Key="SolidColorBrush.Background.1" Color="{StaticResource Colors.Background.1}"/>
             <SolidColorBrush x:Key="SolidColorBrush.Background.2" Color="{StaticResource Colors.Background.2}"/>
