@@ -11,8 +11,15 @@
         <Style.Resources>
 
             <!-- Colors -->
-            <Color x:Key="Colors.Foreground.1">#FFDEDEEA</Color>
-            <Color x:Key="Colors.Foreground.2">#6e6e6e</Color>
+            <Color x:Key="Colors.Foreground.1">#F8F9FA</Color>
+            <Color x:Key="Colors.Foreground.2">#E9ECEF</Color>
+            <Color x:Key="Colors.Foreground.3">#DEE2E6</Color>
+            <Color x:Key="Colors.Foreground.4">#CED4DA</Color>
+            <Color x:Key="Colors.Foreground.5">#ADB5BD</Color>
+            <Color x:Key="Colors.Foreground.6">#6C757D</Color>
+            <Color x:Key="Colors.Foreground.7">#495057</Color>
+            <Color x:Key="Colors.Foreground.8">#343A40</Color>
+            <Color x:Key="Colors.Foreground.9">#212529</Color>
 
             <Color x:Key="Colors.Background.1">#FF636373</Color>
             <Color x:Key="Colors.Background.2">#FF565666</Color>
@@ -21,24 +28,33 @@
             <Color x:Key="Colors.Background.5">#FF2B2B33</Color>
             <Color x:Key="Colors.Background.6">#FF202026</Color>
 
-            <Color x:Key="Colors.ControlNormal">#FF0e89b1</Color>
-            <Color x:Key="Colors.ControlMouseOver">#ff3da2ca</Color>
-            <Color x:Key="Colors.DisabledControl">#FF4B4B59</Color>
-            <Color x:Key="Colors.ControlPressed">#ff57b6e0</Color>
+            <Color x:Key="Colors.Control.Normal">#FF0e89b1</Color>
+            <Color x:Key="Colors.Control.Hover">#ff3da2ca</Color>
+            <Color x:Key="Colors.Control.Disabled">#FF4B4B59</Color>
+            <Color x:Key="Colors.Control.Pressed">#ff57b6e0</Color>
 
             <!-- Avalonia brushes -->
-            <SolidColorBrush x:Key="SolidColorBrush.Foreground.1" Color="{DynamicResource Colors.Foreground.1}" />
-            <SolidColorBrush x:Key="SolidColorBrush.Foreground.2" Color="{DynamicResource Colors.Foreground.2}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.1" Color="{StaticResource Colors.Foreground.1}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.2" Color="{StaticResource Colors.Foreground.2}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.3" Color="{StaticResource Colors.Foreground.3}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.4" Color="{StaticResource Colors.Foreground.4}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.5" Color="{StaticResource Colors.Foreground.5}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.6" Color="{StaticResource Colors.Foreground.6}"/>
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.7" Color="{StaticResource Colors.Foreground.7}"/>
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.8" Color="{StaticResource Colors.Foreground.8}"/>
+            <SolidColorBrush x:Key="SolidColorBrush.Foreground.9" Color="{StaticResource Colors.Foreground.9}"/>
 
             <SolidColorBrush x:Key="SolidColorBrush.Background.1" Color="{StaticResource Colors.Background.1}"/>
             <SolidColorBrush x:Key="SolidColorBrush.Background.2" Color="{StaticResource Colors.Background.2}"/>
             <SolidColorBrush x:Key="SolidColorBrush.Background.3" Color="{StaticResource Colors.Background.3}"/>
-            <SolidColorBrush x:Key="SolidColorBrush.Background.4" Color="{StaticResource Colors.Background.4}" />
+            <SolidColorBrush x:Key="SolidColorBrush.Background.4" Color="{StaticResource Colors.Background.4}"/>
             <SolidColorBrush x:Key="SolidColorBrush.Background.5" Color="{StaticResource Colors.Background.5}"/>
             <SolidColorBrush x:Key="SolidColorBrush.Background.6" Color="{StaticResource Colors.Background.6}"/>
 
-            <SolidColorBrush x:Key="SolidColorBrush.ControlNormal" Color="{StaticResource Colors.ControlNormal}" Opacity="0.8" />
-
+            <SolidColorBrush x:Key="SolidColorBrush.Control.Normal" Color="{StaticResource Colors.Control.Normal}"/>
+            <SolidColorBrush x:Key="SolidColorBrush.Control.Hover" Color="{StaticResource Colors.Control.Hover}" Opacity="0.5" />
+            <SolidColorBrush x:Key="SolidColorBrush.Control.Disabled" Color="{StaticResource Colors.Control.Disabled}"/>
+            <SolidColorBrush x:Key="SolidColorBrush.Control.Pressed" Color="{StaticResource Colors.Control.Pressed}"/>
 
 
             <!--<SolidColorBrush x:Key="ThemeForegroundBrush" Color="{DynamicResource WhiteColor}" Opacity="0.8" />-->

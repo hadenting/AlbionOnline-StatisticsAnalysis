@@ -3,24 +3,86 @@
     <Design.PreviewWith>
         <Border Padding="100">
             <!-- Add Controls for Previewer Here -->
-			<Button Classes="MainMenu">
-                <PathIcon Data="{StaticResource Icon.Button.MainMenu}" />
-			</Button>
+
+			<StackPanel Orientation="Vertical">
+				<Label Classes="MainMenuTitle" Content="Main Menü" />
+                <Button Classes="MainMenuButton">
+                    <TextBlock Classes="MainMenuButton" Text="Item Suche hfgd khldfgj dfgh klhgfdklö dfg fgdlö fdsa fw" />
+                </Button>
+			</StackPanel>
+
         </Border>
     </Design.PreviewWith>
 
-    <!-- Add Styles Here -->
-
-    <Style Selector="StackPanel.MainMenu">
-		<Setter Property="Orientation" Value="Horizontal" />
+    <Style Selector="Button.MainMenuButton">
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
         <Setter Property="Background" Value="transparent"/>
         <Setter Property="Margin" Value="0,5,0,5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ContentPresenter x:Name="PART_ContentPresenter"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Padding="{TemplateBinding Padding}"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </ControlTemplate>
+        </Setter>
     </Style>
 
+    <Style Selector="TextBlock.MainMenuButton">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+
+    <!-- PointerOverState MainMenuButton -->
+
+    <Style Selector="Button.MainMenuButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="TextBlock.Foreground" Value="{StaticResource SolidColorBrush.Foreground.5}" />
+        <Setter Property="Background" Value="transparent"/>
+    </Style>
+
+    <Style Selector="Button.MainMenuButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource SolidColorBrush.Foreground.2}" />
+        <Setter Property="Background" Value="transparent"/>
+	</Style>
+
+	<Style Selector="Button.MainMenuButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonForegroundDisabled}" />
+        <Setter Property="Background" Value="transparent"/>
+	</Style>
+
+	<Style Selector="Button.MainMenuButton.accent /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentButtonForeground}" />
+        <Setter Property="Background" Value="transparent"/>
+	</Style>
+
+	<Style Selector="Button.MainMenuButton.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentButtonForegroundPointerOver}" />
+        <Setter Property="Background" Value="transparent"/>
+	</Style>
+
+	<Style Selector="Button.MainMenuButton.accent:pressed /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentButtonForegroundPressed}" />
+        <Setter Property="Background" Value="transparent"/>
+	</Style>
+
+    <!-- Separators -->
     <Style Selector="Separator.MainMenu">
 		<Setter Property="Height" Value="1" />
-        <Setter Property="Background" Value="{StaticResource SolidColorBrush.Foreground.2}"/>
+        <Setter Property="Background" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
         <Setter Property="Margin" Value="0,20,0,10"/>
     </Style>
 
+    <!-- Labels -->
+    <Style Selector="Label.MainMenuTitle">
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.7}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="0,10,0,5"/>
+    </Style>
 </Styles>
