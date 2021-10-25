@@ -1,0 +1,153 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="750"
+             x:Class="StatisticsAnalysisTool.Avalonia.UserControls.MainMenuUserControl">
+
+    <UserControl.Styles>
+        <Style Selector="Label.MainMenuTitle">
+            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.7}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,5,0,0"/>
+        </Style>
+
+		<Style Selector="Button.MainMenuButton">
+            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
+            <Setter Property="Background" Value="transparent"/>
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <ContentPresenter x:Name="PART_ContentPresenter"
+                                      Background="{TemplateBinding Background}"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Padding="{TemplateBinding Padding}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="TextBlock.MainMenuButton">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style Selector="Button.MainMenuButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{StaticResource SolidColorBrush.Foreground.5}" />
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+        <Style Selector="Button.MainMenuButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{StaticResource SolidColorBrush.Foreground.2}" />
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+        <Style Selector="Button.MainMenuButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonForegroundDisabled}" />
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+        <Style Selector="Button.MainMenuButton.accent /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentButtonForeground}" />
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+        <Style Selector="Button.MainMenuButton.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentButtonForegroundPointerOver}" />
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+        <Style Selector="Button.MainMenuButton.accent:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentButtonForegroundPressed}" />
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+        <Style Selector="Separator.MainMenu">
+            <Setter Property="Height" Value="1" />
+            <Setter Property="Background" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
+            <Setter Property="Margin" Value="0,10,10,10"/>
+        </Style>
+    </UserControl.Styles>
+
+	<ScrollViewer>
+		<DockPanel LastChildFill="True" DockPanel.Dock="Left">
+			<StackPanel Orientation="Vertical">
+				<StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
+					<Label Classes="MainMenuTitle" Content="Main Menü" Margin="0" />
+
+					<Button Classes="MainMenuButton">
+						<TextBlock Classes="MainMenuButton" Text="Item Suche" />
+					</Button>
+
+					<Separator Classes="MainMenu" />
+				</StackPanel>
+
+				<StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
+					<Label Classes="MainMenuTitle" Content="Tracking" />
+
+					<Button Classes="MainMenuButton">
+						<TextBlock Classes="MainMenuButton" Text="Allgemein" />
+					</Button>
+					<Button Classes="MainMenuButton">
+						<TextBlock Classes="MainMenuButton" Text="Loot" />
+					</Button>
+					<Button Classes="MainMenuButton">
+						<TextBlock Classes="MainMenuButton" Text="Dungeon" />
+					</Button>
+					<Button Classes="MainMenuButton">
+						<TextBlock Classes="MainMenuButton" Text="Damage Meter" />
+					</Button>
+					<Button Classes="MainMenuButton">
+						<TextBlock Classes="MainMenuButton" Text="Map Verlauf" />
+					</Button>
+
+					<Separator Classes="MainMenu" />
+				</StackPanel>
+
+				<StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
+					<Label Classes="MainMenuTitle" Content="Spieler" />
+
+					<Button Classes="MainMenuButton">
+						<TextBlock Classes="MainMenuButton" Text="Allgemeine Informationen" />
+					</Button>
+
+					<Separator Classes="MainMenu" />
+				</StackPanel>
+
+				<StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
+					<Label Classes="MainMenuTitle" Content="Optionen" />
+
+					<Button Classes="MainMenuButton">
+						<TextBlock Classes="MainMenuButton" Text="Einstellungen" />
+					</Button>
+
+					<Separator Classes="MainMenu" />
+				</StackPanel>
+
+				<StackPanel Orientation="Vertical">
+					<Label Classes="MainMenuTitle" Content="Extras" />
+
+					<StackPanel Orientation="Horizontal" Margin="10,10,10,5">
+						<PathIcon PointerReleased="InputElementGithub_OnPointerReleased" 
+                                  Data="{StaticResource Icon.Github}" Width="25" Height="25" Margin="0,0,5,0" />
+						<PathIcon PointerReleased="InputElementDiscord_OnPointerReleased" 
+                                  Data="{StaticResource Icon.Discord}" Width="25" Height="25" Margin="5,0,5,0" />
+						<PathIcon PointerReleased="InputElementDonate_OnPointerReleased" 
+                                  Data="{StaticResource Icon.Paypal}" Width="25" Height="25" Margin="5,0,5,0" />
+                    </StackPanel>
+
+                    <Label Content="Made by Triky313" FontSize="12" Margin="5,5,0,0" />
+                    <Label Content="Version 4.5.1" Foreground="{StaticResource SolidColorBrush.Control.Normal}"
+                           FontSize="12" Margin="5,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+		</DockPanel>
+	</ScrollViewer>
+
+</UserControl>

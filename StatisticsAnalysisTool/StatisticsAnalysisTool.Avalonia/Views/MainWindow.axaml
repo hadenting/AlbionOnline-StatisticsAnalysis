@@ -3,6 +3,7 @@
         xmlns:vm="using:StatisticsAnalysisTool.Avalonia.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:StatisticsAnalysisTool.Avalonia.UserControls"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
         x:Class="StatisticsAnalysisTool.Avalonia.Views.MainWindow"
         Icon="/Assets/sat-icon.ico"
@@ -26,112 +27,21 @@
 
         <DockPanel LastChildFill="True" Margin="20,0,20,20">
             <!-- Title Bar -->
-            <DockPanel ZIndex="1" Background="{StaticResource SolidColorBrush.Transparent}" Opacity="1" LastChildFill="True" DockPanel.Dock="Top" Height="40" VerticalAlignment="Bottom" Margin="0,0,0,10" PointerPressed="TitleBar_OnPointerPressed">
-                <Label Content="Statistic Analysis Tool" FontSize="24" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-                <Label Content="..." FontSize="24" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" HorizontalAlignment="Right" Margin="0,0,120,10" />
+			<DockPanel Classes="MainTitleBar" PointerPressed="TitleBar_OnPointerPressed">
+                <Label Classes="MainTitleBar" />
             </DockPanel>
 
-			<!-- Main Menu -->
-            <DockPanel LastChildFill="True" DockPanel.Dock="Left">
-				<StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
-                        <Label Classes="MainMenuTitle" Content="Main Menü" Margin="0" />
-
-						<Button Classes="MainMenuButton">
-                            <TextBlock Classes="MainMenuButton" Text="Item Suche" />
-                        </Button>
-
-                        <Separator Classes="MainMenu" />
-                    </StackPanel>
-
-					<StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
-                        <Label Classes="MainMenuTitle" Content="Tracking" />
-
-                        <Button Classes="MainMenuButton">
-                            <TextBlock Classes="MainMenuButton" Text="Allgemein" />
-                        </Button>
-                        <Button Classes="MainMenuButton">
-                            <TextBlock Classes="MainMenuButton" Text="Loot" />
-                        </Button>
-                        <Button Classes="MainMenuButton">
-                            <TextBlock Classes="MainMenuButton" Text="Dungeon" />
-                        </Button>
-                        <Button Classes="MainMenuButton">
-                            <TextBlock Classes="MainMenuButton" Text="Damage Meter" />
-                        </Button>
-                        <Button Classes="MainMenuButton">
-                            <TextBlock Classes="MainMenuButton" Text="Map Verlauf" />
-                        </Button>
-
-                        <Separator Classes="MainMenu" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
-                        <Label Classes="MainMenuTitle" Content="Spieler" />
-
-                        <Button Classes="MainMenuButton">
-                            <TextBlock Classes="MainMenuButton" Text="Allgemeine Informationen" />
-                        </Button>
-
-                        <Separator Classes="MainMenu" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
-                        <Label Classes="MainMenuTitle" Content="Optionen" />
-
-                        <Button Classes="MainMenuButton">
-                            <TextBlock Classes="MainMenuButton" Text="Einstellungen" />
-                        </Button>
-
-                        <Separator Classes="MainMenu" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical">
-                        <Label Classes="MainMenuTitle" Content="Extras" />
-
-						<StackPanel Orientation="Horizontal" Margin="10,10,10,5">
-                            <PathIcon Data="{StaticResource Icon.Github}" Width="25" Height="25" Margin="0,0,5,0" />
-                            <PathIcon Data="{StaticResource Icon.Discord}" Width="25" Height="25" Margin="5,0,5,0" />
-                            <PathIcon Data="{StaticResource Icon.Paypal}" Width="25" Height="25" Margin="5,0,5,0" />
-                        </StackPanel>
-                        <Label Content="Made by Triky313" FontSize="12" Margin="5,5,0,5" />
-                    </StackPanel>
-                </StackPanel>
-            </DockPanel>
+            <!-- Main Menu -->
+            <uc:MainMenuUserControl/>
 
 			<!-- Content Area -->
             <DockPanel LastChildFill="True" DockPanel.Dock="Right">
                 <Grid Margin="3">
-                    <TextBlock>lalala</TextBlock>
+					<TextBox Height="20" Width="350" VerticalAlignment="Top" HorizontalAlignment="Left" />
                 </Grid>
             </DockPanel>
+
         </DockPanel>
 
-        <!--<DockPanel LastChildFill="True" Background="Pink" Margin="20" DockPanel.Dock="Left" Height="NaN" Width="NaN">
-			<StackPanel Background="red" Orientation="Horizontal" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Width="NaN" DockPanel.Dock="Left">
-				<Label Content="Statistic Analysis Tool" FontSize="22" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" DockPanel.Dock="Left" />
-				<Label Content="Statistic Analysis Tool" FontSize="22" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" DockPanel.Dock="Left" />
-			</StackPanel>
-
-            <StackPanel Background="green" Orientation="Vertical" Width="250" HorizontalAlignment="Left" Margin="20,20,0,0" DockPanel.Dock="Left">
-                <Label Content="Menu" FontSize="12" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.2}" />
-                <Button Classes="MainMenu">
-                    <PathIcon Data="{StaticResource Icon.Button.MainMenu}" />
-                </Button>
-                <Button Classes="MainMenu">
-                    <PathIcon Data="{StaticResource Icon.Button.MainMenu}" />
-                </Button>
-                <Button Classes="MainMenu">
-                    <PathIcon Data="{StaticResource Icon.Button.MainMenu}" />
-                </Button>
-                <Separator Height="1" Background="{StaticResource SolidColorBrush.Foreground.2}" />
-            </StackPanel>
-		</DockPanel>-->
-
-        <!--<PathIcon Data="{StaticResource Icon.Button.MainMenu}" />-->
-
     </Panel>
-
-	<!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-
 </Window>

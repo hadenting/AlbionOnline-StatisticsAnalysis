@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
@@ -7,9 +7,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
-    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
-    <Folder Include="UserControls\" />
+    <Folder Include="Models\" />
     <None Remove=".gitignore" />
     <None Remove="Assets\bg01.png" />
     <None Remove="Assets\sat-icon.ico" />
@@ -25,5 +24,10 @@
     <AvaloniaResource Update="Assets\bg01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AvaloniaResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="UserControls\MainMenuUserControl.axaml.cs">
+      <DependentUpon>MainMenuUserControl.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

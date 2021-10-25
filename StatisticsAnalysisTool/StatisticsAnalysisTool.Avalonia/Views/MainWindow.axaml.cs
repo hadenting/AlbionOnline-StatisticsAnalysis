@@ -1,15 +1,12 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
 namespace StatisticsAnalysisTool.Avalonia.Views
 {
     public class MainWindow : Window
     {
-        private static bool _isWindowMaximized;
-
         public MainWindow()
         {
             InitializeComponent();
