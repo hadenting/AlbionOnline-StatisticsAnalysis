@@ -34,6 +34,8 @@
             <Color x:Key="Colors.Control.Pressed">#ff57b6e0</Color>
 
             <!-- Avalonia brushes -->
+            <SolidColorBrush x:Key="SolidColorBrush.Transparent" Color="#FFFFFF" Opacity="0" />
+
             <SolidColorBrush x:Key="SolidColorBrush.Foreground.1" Color="{StaticResource Colors.Foreground.1}" />
             <SolidColorBrush x:Key="SolidColorBrush.Foreground.2" Color="{StaticResource Colors.Foreground.2}" />
             <SolidColorBrush x:Key="SolidColorBrush.Foreground.3" Color="{StaticResource Colors.Foreground.3}" />
