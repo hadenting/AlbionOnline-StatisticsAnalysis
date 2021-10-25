@@ -4,15 +4,26 @@
         <Border Padding="100">
             <!-- Add Controls for Previewer Here -->
 
-			<StackPanel Orientation="Vertical">
-				<Label Classes="MainMenuTitle" Content="Main Menü" />
-                <Button Classes="MainMenuButton">
-                    <TextBlock Classes="MainMenuButton" Text="Item Suche hfgd khldfgj dfgh klhgfdklö dfg fgdlö fdsa fw" />
-                </Button>
-			</StackPanel>
+			<Grid Classes="MainBackgroundImage">
+
+			</Grid>
 
         </Border>
     </Design.PreviewWith>
+
+    <Style Selector="Grid.MainBackgroundImage">
+        <Setter Property="ZIndex" Value="-1" />
+		<Setter Property="Width" Value="960" />
+        <Setter Property="Height" Value="398" />
+		<Setter Property="Opacity" Value="0.2" />
+
+		<!-- Set a background -->
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush Source="avares://StatisticsAnalysisTool.Avalonia/Assets/bg01.png" />
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style Selector="Button.MainMenuButton">
         <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
@@ -75,7 +86,7 @@
     <Style Selector="Separator.MainMenu">
 		<Setter Property="Height" Value="1" />
         <Setter Property="Background" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
-        <Setter Property="Margin" Value="0,20,0,10"/>
+        <Setter Property="Margin" Value="0,10,0,10"/>
     </Style>
 
     <!-- Labels -->
@@ -83,6 +94,6 @@
         <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.7}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Margin" Value="0,10,0,5"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
     </Style>
 </Styles>

@@ -20,16 +20,22 @@
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
 
+		<DockPanel VerticalAlignment="Top" HorizontalAlignment="Right">
+			<Grid Classes="MainBackgroundImage" />
+		</DockPanel>
+
         <DockPanel LastChildFill="True" Margin="20,15,20,20">
-			<DockPanel LastChildFill="True" DockPanel.Dock="Top">
-                <Label Content="Statistic Analysis Tool" FontSize="22" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" HorizontalAlignment="Left" />
-                <Label Content="..." FontSize="22" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" HorizontalAlignment="Right" Margin="0,0,120,0" />
+            <!-- Title Bar -->
+            <DockPanel LastChildFill="True" DockPanel.Dock="Top" Margin="0,0,120,10">
+                <Label Content="Statistic Analysis Tool" FontSize="24" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" HorizontalAlignment="Left" />
+                <Label Content="..." FontSize="24" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" HorizontalAlignment="Right" />
             </DockPanel>
 
+			<!-- Main Menu -->
             <DockPanel LastChildFill="True" DockPanel.Dock="Left">
 				<StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
-                        <Label Classes="MainMenuTitle" Content="Main Menü" />
+                        <Label Classes="MainMenuTitle" Content="Main Menü" Margin="0" />
 
 						<Button Classes="MainMenuButton">
                             <TextBlock Classes="MainMenuButton" Text="Item Suche" />
@@ -69,16 +75,39 @@
 
                         <Separator Classes="MainMenu" />
                     </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left">
+                        <Label Classes="MainMenuTitle" Content="Optionen" />
+
+                        <Button Classes="MainMenuButton">
+                            <TextBlock Classes="MainMenuButton" Text="Einstellungen" />
+                        </Button>
+
+                        <Separator Classes="MainMenu" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Classes="MainMenuTitle" Content="Extras" />
+
+						<StackPanel Orientation="Horizontal" Margin="10,10,10,5">
+                            <PathIcon Data="{StaticResource Icon.Github}" Width="25" Height="25" Margin="0,0,5,0" />
+                            <PathIcon Data="{StaticResource Icon.Discord}" Width="25" Height="25" Margin="5,0,5,0" />
+                            <PathIcon Data="{StaticResource Icon.Paypal}" Width="25" Height="25" Margin="5,0,5,0" />
+                        </StackPanel>
+                        <Label Content="Made by Triky313" FontSize="12" Margin="5,5,0,5" />
+                    </StackPanel>
                 </StackPanel>
             </DockPanel>
-            <DockPanel LastChildFill="True" DockPanel.Dock="Right">
-                <Grid>
 
+			<!-- Content Area -->
+            <DockPanel LastChildFill="True" DockPanel.Dock="Right">
+                <Grid Margin="3">
+                    <TextBlock>lalala</TextBlock>
                 </Grid>
             </DockPanel>
         </DockPanel>
 
-		<!--<DockPanel LastChildFill="True" Background="Pink" Margin="20" DockPanel.Dock="Left" Height="NaN" Width="NaN">
+        <!--<DockPanel LastChildFill="True" Background="Pink" Margin="20" DockPanel.Dock="Left" Height="NaN" Width="NaN">
 			<StackPanel Background="red" Orientation="Horizontal" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Width="NaN" DockPanel.Dock="Left">
 				<Label Content="Statistic Analysis Tool" FontSize="22" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" DockPanel.Dock="Left" />
 				<Label Content="Statistic Analysis Tool" FontSize="22" FontWeight="Bold" Foreground="{StaticResource SolidColorBrush.Foreground.1}" DockPanel.Dock="Left" />
