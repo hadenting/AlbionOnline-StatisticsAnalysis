@@ -3,7 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using StatisticsAnalysisTool.Avalonia.ViewModels;
-using System.Diagnostics;
+// ReSharper disable UnusedParameter.Local
+// ReSharper disable UnusedMember.Local
 
 namespace StatisticsAnalysisTool.Avalonia.Views
 {
@@ -25,12 +26,14 @@ namespace StatisticsAnalysisTool.Avalonia.Views
         public void TrackingGeneral_OnPointerReleased()
         {
             var vm = (MainWindowViewModel)DataContext!;
+            vm.AllContentControlsToInvisible();
             vm.IsTrackingGeneralUserControlVisible = true;
         }
 
         public void ItemSearch_OnClick()
         {
             var vm = (MainWindowViewModel)DataContext!;
+            vm.AllContentControlsToInvisible();
             vm.IsItemSearchUserControlVisible = true;
         }
 

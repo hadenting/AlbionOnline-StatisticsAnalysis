@@ -8,10 +8,16 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
     {
         private bool _isItemSearchUserControlVisible;
         private bool _isTrackingGeneralUserControlVisible;
+        
+        #region Helper methods
 
-        public MainWindowViewModel()
+        public void AllContentControlsToInvisible()
         {
+            IsItemSearchUserControlVisible = false;
+            IsTrackingGeneralUserControlVisible = false;
         }
+
+        #endregion
 
         #region Bindings
 

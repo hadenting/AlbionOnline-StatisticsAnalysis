@@ -1,8 +1,9 @@
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using StatisticsAnalysisTool.Avalonia.ViewModels;
+// ReSharper disable UnusedMember.Local
+// ReSharper disable UnusedParameter.Local
 
 namespace StatisticsAnalysisTool.Avalonia.UserControls
 {

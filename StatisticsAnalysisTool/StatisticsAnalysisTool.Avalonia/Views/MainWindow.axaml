@@ -1,6 +1,5 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:StatisticsAnalysisTool.Avalonia.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:StatisticsAnalysisTool.Avalonia.UserControls"
@@ -37,9 +36,7 @@
 
 			<!-- Content Area -->
             <uc:ItemSearchUserControl IsVisible="{Binding IsItemSearchUserControlVisible, FallbackValue=false}" />
-            <Grid IsVisible="{Binding IsTrackingGeneralUserControlVisible, FallbackValue=false}">
-                <uc:TrackingGeneralUserControl />
-            </Grid>
+            <uc:TrackingGeneralUserControl IsVisible="{Binding IsTrackingGeneralUserControlVisible, FallbackValue=false}" />
 
         </DockPanel>
 
