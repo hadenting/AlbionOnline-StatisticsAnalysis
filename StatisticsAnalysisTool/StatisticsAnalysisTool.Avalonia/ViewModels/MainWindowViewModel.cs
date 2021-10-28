@@ -1,11 +1,48 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+using JetBrains.Annotations;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public string Greeting => "Welcome to Avalonia!";
+        private bool _isItemSearchUserControlVisible;
+        private bool _isTrackingGeneralUserControlVisible;
+
+        public MainWindowViewModel()
+        {
+        }
+
+        #region Bindings
+
+        public bool IsItemSearchUserControlVisible
+        {
+            get => _isItemSearchUserControlVisible;
+            set
+            {
+                _isItemSearchUserControlVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsTrackingGeneralUserControlVisible
+        {
+            get => _isTrackingGeneralUserControlVisible;
+            set
+            {
+                _isTrackingGeneralUserControlVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public new event PropertyChangedEventHandler? PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null!)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

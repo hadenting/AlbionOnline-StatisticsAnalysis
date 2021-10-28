@@ -1,0 +1,36 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="StatisticsAnalysisTool.Avalonia.UserControls.ItemSearchUserControl">
+    
+    
+    <DockPanel LastChildFill="True" DockPanel.Dock="Right">
+        
+        <StackPanel Orientation="Vertical">
+            <Grid Margin="3">
+                <TextBox Height="20" Width="350" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            </Grid>
+            <ScrollViewer>
+                <Grid Width="NaN" MinHeight="300" Height="NaN">
+                    
+                    <!--<ListBox Items="{Binding Items}" SelectionMode="Single">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="Red" CornerRadius="4" Padding="4">
+                                    --><!-- TODO: AlbumViewModel : ViewModelBase als model einbauen --><!--
+                                    <TextBlock Text="{Binding UniqueName}"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>-->
+
+					<ItemsRepeater Items="{Binding Items}" />
+
+				</Grid>
+            </ScrollViewer>
+        </StackPanel>
+        
+    </DockPanel>
+</UserControl>

@@ -11,9 +11,10 @@
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         ExtendClientAreaToDecorationsHint="True">
-    <Design.DataContext>
+    <!--<Design.DataContext>
         <vm:MainWindowViewModel/>
-    </Design.DataContext>
+    </Design.DataContext>-->
+
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
             <ExperimentalAcrylicBorder.Material>
@@ -35,11 +36,10 @@
             <uc:MainMenuUserControl/>
 
 			<!-- Content Area -->
-            <DockPanel LastChildFill="True" DockPanel.Dock="Right">
-                <Grid Margin="3">
-					<TextBox Height="20" Width="350" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                </Grid>
-            </DockPanel>
+            <uc:ItemSearchUserControl IsVisible="{Binding IsItemSearchUserControlVisible, FallbackValue=false}" />
+            <Grid IsVisible="{Binding IsTrackingGeneralUserControlVisible, FallbackValue=false}">
+                <uc:TrackingGeneralUserControl />
+            </Grid>
 
         </DockPanel>
 

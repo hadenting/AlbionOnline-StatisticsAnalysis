@@ -48,4 +48,5 @@
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
+
 </Styles>

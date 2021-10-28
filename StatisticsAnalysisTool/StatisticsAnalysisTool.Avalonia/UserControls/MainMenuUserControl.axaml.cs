@@ -1,58 +1,40 @@
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-// ReSharper disable UnusedParameter.Local
-// ReSharper disable UnusedMember.Local
+using StatisticsAnalysisTool.Avalonia.ViewModels;
 
 namespace StatisticsAnalysisTool.Avalonia.UserControls
 {
     public class MainMenuUserControl : UserControl
     {
-        private static string DonateUrl => "https://www.paypal.com/donate?hosted_button_id=4PZ8DB8PSWCK8";
-        private static string DiscordUrl => "https://discord.com/invite/sahSrSPmaJ";
-        private static string GitHubRepoUrl => "https://github.com/Triky313/AlbionOnline-StatisticsAnalysis";
+        private readonly MainMenuUserControlViewModel _mainMenuUserControlViewModel;
 
         public MainMenuUserControl()
         {
             InitializeComponent();
+
+            _mainMenuUserControlViewModel = new MainMenuUserControlViewModel();
+            DataContext = _mainMenuUserControlViewModel;
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
         }
-
-        public static void OpenGitHubRepo(string url)
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                Process.Start(new ProcessStartInfo("cmd", $"/c start {url}"));
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                Process.Start("xdg-open", url);
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                Process.Start("open", url);
-            }
-        }
-
         private void InputElementGithub_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
         {
-            OpenGitHubRepo(GitHubRepoUrl);
+            _mainMenuUserControlViewModel.OpenGitHubRepo(_mainMenuUserControlViewModel.GitHubRepoUrl);
         }
 
         private void InputElementDiscord_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
         {
-            OpenGitHubRepo(DiscordUrl);
+            _mainMenuUserControlViewModel.OpenGitHubRepo(_mainMenuUserControlViewModel.DiscordUrl);
         }
 
         private void InputElementDonate_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
         {
-            OpenGitHubRepo(DonateUrl);
+            _mainMenuUserControlViewModel.OpenGitHubRepo(_mainMenuUserControlViewModel.DonateUrl);
         }
     }
 }
