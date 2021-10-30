@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
@@ -29,6 +30,8 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         }
 
         #region Binding
+
+        public static string Version => $"v{Assembly.GetExecutingAssembly().GetName().Version}";
 
         public new event PropertyChangedEventHandler? PropertyChanged;
 

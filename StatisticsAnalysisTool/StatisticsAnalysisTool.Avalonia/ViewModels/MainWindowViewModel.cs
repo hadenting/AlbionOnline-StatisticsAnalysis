@@ -6,9 +6,6 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        private bool _isItemSearchUserControlVisible;
-        private bool _isTrackingGeneralUserControlVisible;
-        
         #region Helper methods
 
         public void AllContentControlsToInvisible()
@@ -20,6 +17,9 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         #endregion
 
         #region Bindings
+
+        private bool _isItemSearchUserControlVisible;
+        private bool _isTrackingGeneralUserControlVisible;
 
         public bool IsItemSearchUserControlVisible
         {
