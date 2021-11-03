@@ -14,7 +14,23 @@
             </Grid>
             <ScrollViewer>
                 <Grid Width="NaN" MinHeight="300" Height="NaN">
-                    
+
+                    <ItemsRepeater Height="200" Width="200" Items="{Binding Items}" />
+
+					<!--<ScrollViewer Height="200" Width="200">
+                        <ItemsRepeater Height="200" Width="200" Items="{Binding Items}">
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate>
+                                    --><!--<uc:ItemViewUserControl />--><!--
+                                    <Label>TEXT</Label>
+                                    --><!--<DockPanel>
+                                        <Label Content="{Binding Name, FallbackValue=NAME}" />
+                                    </DockPanel>--><!--
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+                    </ScrollViewer>-->
+
                     <!--<ListBox Items="{Binding Items}" SelectionMode="Single">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -25,8 +41,6 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>-->
-
-					<ItemsRepeater Items="{Binding Items}" />
 
 				</Grid>
             </ScrollViewer>

@@ -1,13 +1,10 @@
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using JetBrains.Annotations;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
-    public class MainMenuUserControlViewModel : ViewModelBase, INotifyPropertyChanged
+    public class MainMenuUserControlViewModel : ViewModelBase
     {
         public string DonateUrl => "https://www.paypal.com/donate?hosted_button_id=4PZ8DB8PSWCK8";
         public string DiscordUrl => "https://discord.com/invite/sahSrSPmaJ";
@@ -32,14 +29,6 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         #region Binding
 
         public static string Version => $"v{Assembly.GetExecutingAssembly().GetName().Version}";
-
-        public new event PropertyChangedEventHandler? PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null!)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         #endregion
     }

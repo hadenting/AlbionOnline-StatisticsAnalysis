@@ -1,11 +1,9 @@
+using ReactiveUI;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
-    public class ItemSearchUserControlViewModel : ViewModelBase, INotifyPropertyChanged
+    public class ItemSearchUserControlViewModel : ViewModelBase
     {
         private ObservableCollection<string> _items = new();
 
@@ -31,19 +29,7 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         public ObservableCollection<string> Items
         {
             get => _items;
-            set
-            {
-                _items = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public new event PropertyChangedEventHandler? PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null!)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            set => this.RaiseAndSetIfChanged(ref _items, value);
         }
 
         #endregion

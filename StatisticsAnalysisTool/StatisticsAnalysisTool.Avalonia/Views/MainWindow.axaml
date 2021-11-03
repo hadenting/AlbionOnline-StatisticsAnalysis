@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:StatisticsAnalysisTool.Avalonia.UserControls"
+        xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
         x:Class="StatisticsAnalysisTool.Avalonia.Views.MainWindow"
         Icon="/Assets/sat-icon.ico"
@@ -10,9 +11,9 @@
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         ExtendClientAreaToDecorationsHint="True">
-    <!--<Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>-->
+    <Design.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Design.DataContext>
 
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
