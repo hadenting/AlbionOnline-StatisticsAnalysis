@@ -3,7 +3,7 @@ using Avalonia.Markup.Xaml;
 
 namespace StatisticsAnalysisTool.Avalonia.Views
 {
-    public partial class ItemSearchView : UserControl
+    public class ItemSearchView : UserControl
     {
         public ItemSearchView()
         {

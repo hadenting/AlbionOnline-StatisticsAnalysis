@@ -1,12 +1,8 @@
-using System;
+using ReactiveUI;
 using System.Diagnostics;
-using System.Reactive.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using ReactiveUI;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
