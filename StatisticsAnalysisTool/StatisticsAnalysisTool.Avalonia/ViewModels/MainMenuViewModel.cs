@@ -36,7 +36,7 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
             OpenWebsite("https://github.com/Triky313/AlbionOnline-StatisticsAnalysis");
         }
 
-        public void OpenWebsite(string url)
+        private void OpenWebsite(string url)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {

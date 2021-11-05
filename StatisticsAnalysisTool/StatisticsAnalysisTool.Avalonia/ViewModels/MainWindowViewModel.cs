@@ -1,3 +1,4 @@
+using System.Windows.Input;
 using ReactiveUI;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
@@ -7,12 +8,20 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         private ViewModelBase _navigationContent = new ItemSearchViewModel();
         private ViewModelBase _mainMenuView = new MainMenuViewModel();
 
-        #region Helper methods
+        public ICommand OpenItemSearchClicked { get; }
 
-        #endregion
+        public MainWindowViewModel()
+        {
+            OpenItemSearchClicked = ReactiveCommand.Create(OpenItemSearch);
+        }
+
+        private void OpenItemSearch()
+        {
+            NavigationContent = new ItemSearchViewModel();
+        }
 
         #region Bindings
-        
+
         public ViewModelBase NavigationContent
         {
             get => _navigationContent;

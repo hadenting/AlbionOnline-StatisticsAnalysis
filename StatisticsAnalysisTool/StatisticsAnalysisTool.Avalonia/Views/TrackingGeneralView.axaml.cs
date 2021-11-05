@@ -1,12 +1,11 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace StatisticsAnalysisTool.Avalonia.UserControls
+namespace StatisticsAnalysisTool.Avalonia.Views
 {
-    public partial class TrackingGeneralUserControl : UserControl
+    public class TrackingGeneralView : UserControl
     {
-        public TrackingGeneralUserControl()
+        public TrackingGeneralView()
         {
             InitializeComponent();
         }

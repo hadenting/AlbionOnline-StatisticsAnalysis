@@ -26,6 +26,7 @@ namespace StatisticsAnalysisTool.Avalonia.Views
         public void TrackingGeneral_OnPointerReleased()
         {
             var vm = (MainWindowViewModel)DataContext!;
+            vm.NavigationContent = new TrackingGeneralViewModel();
         }
 
         public void ItemSearch_OnClick()

@@ -31,6 +31,9 @@
     </AvaloniaResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\TrackingGeneralView.axaml.cs">
+      <DependentUpon>TrackingGeneralView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ItemSearchView.axaml.cs">
       <DependentUpon>ItemSearchView.axaml</DependentUpon>
     </Compile>
