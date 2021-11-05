@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:StatisticsAnalysisTool.Avalonia.UserControls"
         xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
+        xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
         x:Class="StatisticsAnalysisTool.Avalonia.Views.MainWindow"
         Icon="/Assets/sat-icon.ico"
@@ -33,11 +34,10 @@
             </DockPanel>
 
             <!-- Main Menu -->
-            <uc:MainMenuUserControl/>
+            <ContentControl Content="{Binding MainMenuView}"/>
 
 			<!-- Content Area -->
-            <uc:ItemSearchUserControl IsVisible="{Binding IsItemSearchUserControlVisible, FallbackValue=false}" />
-            <uc:TrackingGeneralUserControl IsVisible="{Binding IsTrackingGeneralUserControlVisible, FallbackValue=false}" />
+            <ContentControl Content="{Binding NavigationContent}"/>
 
         </DockPanel>
 

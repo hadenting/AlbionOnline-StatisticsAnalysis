@@ -3,8 +3,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views"
+             xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="750"
-             x:Class="StatisticsAnalysisTool.Avalonia.UserControls.MainMenuUserControl">
+             x:Class="StatisticsAnalysisTool.Avalonia.Views.MainMenuView">
+    <Design.DataContext>
+        <viewModels:MainMenuViewModel/>
+    </Design.DataContext>
 
     <UserControl.Styles>
         <Style Selector="Label.MainMenuTitle">
@@ -12,6 +16,29 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Margin" Value="0,5,0,0"/>
+        </Style>
+
+		<Style Selector="Button.MainMenuIconButton">
+            <Setter Property="Foreground" Value="transparent"/>
+            <Setter Property="Background" Value="transparent"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <ContentPresenter x:Name="PART_ContentPresenter"
+                                      Content="{TemplateBinding Content}"/>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+		<Style Selector="Button.MainMenuIconButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{StaticResource SolidColorBrush.Foreground.5}" />
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+        <Style Selector="PathIcon.MainMenuIconButton">
+            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
+            <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
         </Style>
 
 		<Style Selector="Button.MainMenuButton">
@@ -33,10 +60,6 @@
                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                 </ControlTemplate>
             </Setter>
-        </Style>
-
-        <Style Selector="TextBlock.MainMenuButton">
-            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
 
         <Style Selector="Button.MainMenuButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
@@ -69,18 +92,15 @@
             <Setter Property="Background" Value="transparent"/>
         </Style>
 
-        <Style Selector="PathIcon.MainMenuButtonIcon">
-            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
-            <Setter Property="Margin" Value="5,0,5,0"/>
-            <Setter Property="Width" Value="25"/>
-            <Setter Property="Height" Value="25"/>
+        <Style Selector="TextBlock.MainMenuButton">
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
 
-        <Style Selector="Separator.MainMenu">
-            <Setter Property="Height" Value="1" />
-            <Setter Property="Background" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
-            <Setter Property="Margin" Value="0,10,10,10"/>
-        </Style>
+		<Style Selector="Separator.MainMenu">
+			<Setter Property="Height" Value="1" />
+			<Setter Property="Background" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
+			<Setter Property="Margin" Value="0,10,10,10"/>
+		</Style>
 
     </UserControl.Styles>
 
@@ -144,9 +164,12 @@
 					<Label Classes="MainMenuTitle" Content="Extras" />
 
 					<StackPanel Orientation="Horizontal" Margin="10,10,10,5">
-						<PathIcon Classes="MainMenuButtonIcon" PointerReleased="InputElementGithub_OnPointerReleased" Data="{StaticResource Icon.Github}" />
-						<PathIcon Classes="MainMenuButtonIcon" PointerReleased="InputElementDiscord_OnPointerReleased" Data="{StaticResource Icon.Discord}" />
-						<PathIcon Classes="MainMenuButtonIcon" PointerReleased="InputElementDonate_OnPointerReleased" Data="{StaticResource Icon.Paypal}" />
+						<Button Classes="MainMenuIconButton" ClickMode="Release" Command="{Binding OpenGitHubRepoClicked}">
+                            <PathIcon Classes="MainMenuIconButton" Data="{StaticResource Icon.Github}" />
+                        </Button>
+
+                        <PathIcon Classes="MainMenuIconButton" Data="{StaticResource Icon.Discord}" />
+						<PathIcon Classes="MainMenuIconButton" Data="{StaticResource Icon.Paypal}" />
                     </StackPanel>
 
                     <Label Content="Made by Triky313" FontSize="12" Margin="5,5,0,0" Foreground="{StaticResource SolidColorBrush.Foreground.6}" />

@@ -26,22 +26,19 @@ namespace StatisticsAnalysisTool.Avalonia.Views
         public void TrackingGeneral_OnPointerReleased()
         {
             var vm = (MainWindowViewModel)DataContext!;
-            vm.AllContentControlsToInvisible();
-            vm.IsTrackingGeneralUserControlVisible = true;
         }
 
         public void ItemSearch_OnClick()
         {
             var vm = (MainWindowViewModel)DataContext!;
-            vm.AllContentControlsToInvisible();
-            vm.IsItemSearchUserControlVisible = true;
+            vm.NavigationContent = new ItemSearchViewModel();
         }
 
         private void TitleBar_OnPointerPressed(object? sender, PointerPressedEventArgs e)
         {
             if (e.GetCurrentPoint(null).Properties.PointerUpdateKind == PointerUpdateKind.LeftButtonPressed)
             {
-                BeginMoveDrag(e);
+                PlatformImpl?.BeginMoveDrag(e);
             }
         }
     }

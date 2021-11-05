@@ -1,11 +1,11 @@
-﻿using Avalonia.Controls;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace StatisticsAnalysisTool.Avalonia.UserControls
+namespace StatisticsAnalysisTool.Avalonia.Views
 {
-    public sealed class ItemSearchUserControl : UserControl
+    public class MainMenuView : UserControl
     {
-        public ItemSearchUserControl()
+        public MainMenuView()
         {
             InitializeComponent();
         }
