@@ -6,6 +6,7 @@ using System.Windows.Input;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
+    // https://www.reactiveui.net/docs/handbook/commands/
     public class MainMenuViewModel : ViewModelBase
     {
         public ICommand OpenGitHubRepoClicked { get; }
