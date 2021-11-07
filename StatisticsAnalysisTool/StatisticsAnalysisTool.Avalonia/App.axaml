@@ -10,7 +10,6 @@
         <FluentTheme Mode="Dark"/>
         <StyleInclude Source="avares://StatisticsAnalysisTool.Avalonia/Styles/ColorStyles.axaml" />
         <StyleInclude Source="avares://StatisticsAnalysisTool.Avalonia/Styles/IconStyles.axaml" />
-        <StyleInclude Source="avares://StatisticsAnalysisTool.Avalonia/Styles/MainStyles.axaml" />
         <StyleInclude Source="avares://StatisticsAnalysisTool.Avalonia/Styles/SidebarStyle.axaml" />
     </Application.Styles>
 </Application>

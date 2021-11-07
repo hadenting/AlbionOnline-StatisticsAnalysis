@@ -44,18 +44,7 @@
                         </ItemsRepeater>
                     </ScrollViewer>-->
 
-                    <!--<ListBox Items="{Binding Items}" SelectionMode="Single">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="Red" CornerRadius="4" Padding="4">
-                                    --><!-- TODO: AlbumViewModel : ViewModelBase als model einbauen --><!--
-                                    <TextBlock Text="{Binding UniqueName}"/>
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>-->
-
-				</Grid>
+                </Grid>
             </ScrollViewer>
         </StackPanel>
         
