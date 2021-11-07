@@ -4,24 +4,96 @@
         xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views">
 	<Design.PreviewWith>
 		<Border Padding="20">
-            <controls:AnimateTabControl Classes="Sidebar">
-                <TabItem Classes="MainMenuTitle" Header="Main Menu" />
-                <TabItem Header="Item Search">
-                    <views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
-                </TabItem>
-                <TabItem Classes="MainMenuEmpty" Header="" />
-
-                <TabItem Classes="MainMenuTitle" Header="Tracking" />
-                <TabItem Header="Generally">
-                    <views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
-                </TabItem>
-                <TabItem Header="Item Search">
-                    <views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
-                </TabItem>
-                <TabItem Header="Send Transaction">
-                    <views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
-                </TabItem>
-            </controls:AnimateTabControl>
+			<controls:AnimateTabControl Classes="Sidebar">
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Item Search" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Tracking" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Loot" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Dungeon" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Damage Meter" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Map History" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Player Information" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Settings" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+			</controls:AnimateTabControl>
 		</Border>
 	</Design.PreviewWith>
 
@@ -101,35 +173,9 @@
         </Style.Animations>
     </Style>
 
-    <Style Selector="TabControl.Sidebar > TabItem.SidebarTitle">
-		<Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.5}" />
-		<Setter Property="Background" Value="transparent"/>
-		<Setter Property="FontWeight" Value="Bold" />
-		<Setter Property="FontSize" Value="12"/>
-		<Setter Property="Margin" Value="-5,-20,0,-20"/>
-		<Setter Property="Padding" Value="0"/>
-		<Setter Property="IsEnabled" Value="false"/>
-		<Setter Property="Width" Value="200"/>
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Panel>
-					<ContentPresenter
-					Name="PART_ContentPresenter"
-					Content="{TemplateBinding Header}"
-					VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
-				</Panel>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-    <Style Selector="TabControl.Sidebar > TabItem.SidebarEmpty">
-        <Setter Property="Foreground" Value="transparent"/>
-        <Setter Property="Background" Value="transparent"/>
-        <Setter Property="MinHeight" Value="5"/>
-        <Setter Property="Height" Value="20"/>
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="IsEnabled" Value="false"/>
+    <Style Selector="PathIcon.Sidebar">
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.3}"/>
+        <Setter Property="Margin" Value="0,0,5,0" />
     </Style>
 
 </Styles>

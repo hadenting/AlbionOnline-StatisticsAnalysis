@@ -51,7 +51,7 @@
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
-	</Window.Styles>
+    </Window.Styles>
 
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
@@ -73,24 +73,94 @@
 
             <!-- Main Menu -->
 			<controls:AnimateTabControl Classes="Sidebar">
-                <TabItem Classes="SidebarTitle" Header="Main Menu" />
-                <TabItem Header="Item Search">
-                    <views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Item Search" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
 				</TabItem>
-                <TabItem Classes="SidebarEmpty" Header="" />
-
-                <TabItem Classes="SidebarTitle" Header="Tracking" />
-                <TabItem Header="Generally">
-                    <views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
-                </TabItem>
-                <TabItem Header="Item Search">
-                    <views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
-                </TabItem>
-                <TabItem Header="Send Transaction">
-                    <views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
-                </TabItem>
-                <TabItem Classes="SidebarEmpty" Header="" />
-
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Tracking" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Loot" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Dungeon" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Damage Meter" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Map History" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Player Information" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
+				<TabItem>
+					<HeaderedContentControl.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+								<Label Content="Settings" />
+							</StackPanel>
+						</DataTemplate>
+					</HeaderedContentControl.HeaderTemplate>
+					<views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+				</TabItem>
 			</controls:AnimateTabControl>
         </DockPanel>
     </Panel>
