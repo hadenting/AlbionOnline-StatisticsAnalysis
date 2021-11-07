@@ -39,8 +39,8 @@
     <Compile Update="Views\ItemSearchView.axaml.cs">
       <DependentUpon>ItemSearchView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\MainMenuView.axaml.cs">
-      <DependentUpon>MainMenuView.axaml</DependentUpon>
+    <Compile Update="Views\FooterView.axaml.cs">
+      <DependentUpon>FooterView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

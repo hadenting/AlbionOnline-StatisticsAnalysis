@@ -8,6 +8,7 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         {
             ItemSearchViewModel = new ItemSearchViewModel();
             TrackingGeneralViewModel = new TrackingGeneralViewModel();
+            FooterViewModel = new FooterViewModel();
         }
 
         #region Bindings
@@ -17,6 +18,9 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
 
         [Reactive]
         public TrackingGeneralViewModel TrackingGeneralViewModel { get; set; }
+
+        [Reactive]
+        public ViewModelBase FooterViewModel { get; set; }
 
         #endregion
     }

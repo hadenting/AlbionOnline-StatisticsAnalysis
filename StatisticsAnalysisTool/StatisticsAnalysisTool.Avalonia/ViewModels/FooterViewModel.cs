@@ -7,13 +7,13 @@ using System.Windows.Input;
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
     // https://www.reactiveui.net/docs/handbook/commands/
-    public class MainMenuViewModel : ViewModelBase
+    public class FooterViewModel : ViewModelBase
     {
         public ICommand OpenGitHubRepoClicked { get; }
         public ICommand OpenDonateUrlClicked { get; }
         public ICommand OpenDiscordUrlClicked { get; }
 
-        public MainMenuViewModel()
+        public FooterViewModel()
         {
             OpenDonateUrlClicked = ReactiveCommand.Create(OpenDonateUrl);
             OpenDiscordUrlClicked = ReactiveCommand.Create(OpenDiscordUrl);

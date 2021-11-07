@@ -8,8 +8,8 @@
 				<TabItem>
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
-							<StackPanel Orientation="Horizontal">
-								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+							<StackPanel Classes="SidebarItem">
+								<PathIcon Data="{StaticResource Icon.Discord}" />
 								<Label Content="Item Search" />
 							</StackPanel>
 						</DataTemplate>
@@ -19,8 +19,8 @@
 				<TabItem>
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
-							<StackPanel Orientation="Horizontal">
-								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+							<StackPanel Classes="SidebarItem">
+								<PathIcon Data="{StaticResource Icon.Discord}" />
 								<Label Content="Tracking" />
 							</StackPanel>
 						</DataTemplate>
@@ -30,8 +30,8 @@
 				<TabItem>
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
-							<StackPanel Orientation="Horizontal">
-								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+							<StackPanel Classes="SidebarItem">
+								<PathIcon Data="{StaticResource Icon.Discord}" />
 								<Label Content="Loot" />
 							</StackPanel>
 						</DataTemplate>
@@ -41,8 +41,8 @@
 				<TabItem>
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
-							<StackPanel Orientation="Horizontal">
-								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+							<StackPanel Classes="SidebarItem">
+								<PathIcon Data="{StaticResource Icon.Discord}" />
 								<Label Content="Dungeon" />
 							</StackPanel>
 						</DataTemplate>
@@ -52,8 +52,8 @@
 				<TabItem>
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
-							<StackPanel Orientation="Horizontal">
-								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+							<StackPanel Classes="SidebarItem">
+								<PathIcon Data="{StaticResource Icon.Discord}" />
 								<Label Content="Damage Meter" />
 							</StackPanel>
 						</DataTemplate>
@@ -63,8 +63,8 @@
 				<TabItem>
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
-							<StackPanel Orientation="Horizontal">
-								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+							<StackPanel Classes="SidebarItem">
+								<PathIcon Data="{StaticResource Icon.Discord}" />
 								<Label Content="Map History" />
 							</StackPanel>
 						</DataTemplate>
@@ -74,8 +74,8 @@
 				<TabItem>
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
-							<StackPanel Orientation="Horizontal">
-								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+							<StackPanel Classes="SidebarItem">
+								<PathIcon Data="{StaticResource Icon.Discord}" />
 								<Label Content="Player Information" />
 							</StackPanel>
 						</DataTemplate>
@@ -85,8 +85,8 @@
 				<TabItem>
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
-							<StackPanel Orientation="Horizontal">
-								<PathIcon Classes="Sidebar" Data="{StaticResource Icon.Discord}" />
+							<StackPanel Classes="SidebarItem">
+								<PathIcon  Data="{StaticResource Icon.Discord}" />
 								<Label Content="Settings" />
 							</StackPanel>
 						</DataTemplate>
@@ -107,7 +107,7 @@
 					BorderBrush="{TemplateBinding BorderBrush}"
 					BorderThickness="{TemplateBinding BorderThickness}">
 					<DockPanel>
-						<ScrollViewer Width="240" Margin="0 30 0 0"
+						<ScrollViewer Width="220" Margin="0 0 0 0"
 							Name="PART_ScrollViewer"
 							HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
 							VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
@@ -176,6 +176,14 @@
     <Style Selector="PathIcon.Sidebar">
         <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.3}"/>
         <Setter Property="Margin" Value="0,0,5,0" />
+    </Style>
+
+    <Style Selector="StackPanel.SidebarItem">
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
+    <Style Selector="StackPanel.SidebarItem > PathIcon">
+        <Setter Property="Margin" Value="0,0,0,0" />
     </Style>
 
 </Styles>

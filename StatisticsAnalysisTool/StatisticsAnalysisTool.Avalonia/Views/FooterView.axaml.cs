@@ -3,9 +3,9 @@ using Avalonia.Markup.Xaml;
 
 namespace StatisticsAnalysisTool.Avalonia.Views
 {
-    public class MainMenuView : UserControl
+    public class FooterView : UserControl
     {
-        public MainMenuView()
+        public FooterView()
         {
             InitializeComponent();
         }

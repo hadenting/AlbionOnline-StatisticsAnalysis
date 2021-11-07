@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="100"
+             x:Class="StatisticsAnalysisTool.Avalonia.Views.FooterView">
+    <Design.DataContext>
+		<viewModels:FooterViewModel/>
+    </Design.DataContext>
+
+    <UserControl.Styles>
+		<Style Selector="Button.Hyperlink">
+            <Setter Property="Foreground" Value="transparent"/>
+            <Setter Property="Background" Value="transparent"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <ContentPresenter x:Name="PART_ContentPresenter"
+                                      Content="{TemplateBinding Content}"/>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.Hyperlink:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{StaticResource SolidColorBrush.Foreground.5}" />
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+        <Style Selector="PathIcon.Hyperlink">
+            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
+            <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="Width" Value="26"/>
+            <Setter Property="Height" Value="26"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid VerticalAlignment="Bottom" Margin="10">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+           <Label Content="Made by Triky313" FontSize="12" Margin="0,5,0,-6" Foreground="{StaticResource SolidColorBrush.Foreground.6}" />
+           <Label Content="{Binding Version, FallbackValue=v0.0.0}" Foreground="{StaticResource SolidColorBrush.Blue.7}" FontSize="12" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5,0,0,5">
+            <Button Classes="Hyperlink" ClickMode="Release" Command="{Binding OpenGitHubRepoClicked}">
+                <PathIcon Classes="Hyperlink" Data="{StaticResource Icon.Github}" />
+            </Button>
+            <Button Classes="Hyperlink" ClickMode="Release" Command="{Binding OpenDiscordUrlClicked}">
+                <PathIcon Classes="Hyperlink" Data="{StaticResource Icon.Discord}" />
+            </Button>
+            <Button Classes="Hyperlink" ClickMode="Release" Command="{Binding OpenDonateUrlClicked}">
+                <PathIcon Classes="Hyperlink" Data="{StaticResource Icon.Paypal}" />
+            </Button>
+        </StackPanel>
+    </Grid>
+
+</UserControl>
