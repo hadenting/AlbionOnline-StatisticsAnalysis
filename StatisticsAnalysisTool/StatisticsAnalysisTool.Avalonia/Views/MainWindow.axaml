@@ -3,6 +3,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
+        xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views"
+        xmlns:controls="clr-namespace:StatisticsAnalysisTool.Avalonia.Controls"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
         x:Class="StatisticsAnalysisTool.Avalonia.Views.MainWindow"
         Icon="/Assets/sat-icon.ico"
@@ -13,6 +15,43 @@
     <Design.DataContext>
         <viewModels:MainWindowViewModel/>
     </Design.DataContext>
+
+    <Window.Styles>
+        <!-- DockPanels -->
+        <Style Selector="DockPanel.MainTitleBar">
+            <Setter Property="ZIndex" Value="1" />
+            <Setter Property="Background" Value="{StaticResource SolidColorBrush.Transparent}" />
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="LastChildFill" Value="True" />
+            <Setter Property="Dock" Value="Top" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+        </Style>
+
+        <!-- Images -->
+        <Style Selector="Grid.MainBackgroundImage">
+            <Setter Property="ZIndex" Value="-1" />
+            <Setter Property="Width" Value="960" />
+            <Setter Property="Height" Value="398" />
+            <Setter Property="Opacity" Value="0.2" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush Source="avares://StatisticsAnalysisTool.Avalonia/Assets/bg01.png" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Labels -->
+        <Style Selector="Label.MainTitleBar">
+            <Setter Property="Content" Value="Statistic Analysis Tool" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.1}"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+	</Window.Styles>
 
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
@@ -26,18 +65,33 @@
 		</DockPanel>
 
         <DockPanel LastChildFill="True" Margin="20,0,20,20">
+
             <!-- Title Bar -->
 			<DockPanel Classes="MainTitleBar" PointerPressed="TitleBar_OnPointerPressed">
                 <Label Classes="MainTitleBar" />
             </DockPanel>
 
             <!-- Main Menu -->
-            <ContentControl Content="{Binding MainMenuView}"/>
+			<controls:AnimateTabControl Classes="Sidebar">
+                <TabItem Classes="SidebarTitle" Header="Main Menu" />
+                <TabItem Header="Item Search">
+                    <views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
+				</TabItem>
+                <TabItem Classes="SidebarEmpty" Header="" />
 
-			<!-- Content Area -->
-            <ContentControl Content="{Binding NavigationContent}"/>
+                <TabItem Classes="SidebarTitle" Header="Tracking" />
+                <TabItem Header="Generally">
+                    <views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+                </TabItem>
+                <TabItem Header="Item Search">
+                    <views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
+                </TabItem>
+                <TabItem Header="Send Transaction">
+                    <views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+                </TabItem>
+                <TabItem Classes="SidebarEmpty" Header="" />
 
+			</controls:AnimateTabControl>
         </DockPanel>
-
     </Panel>
 </Window>

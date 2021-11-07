@@ -1,0 +1,135 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:StatisticsAnalysisTool.Avalonia.Controls"
+        xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views">
+	<Design.PreviewWith>
+		<Border Padding="20">
+            <controls:AnimateTabControl Classes="Sidebar">
+                <TabItem Classes="MainMenuTitle" Header="Main Menu" />
+                <TabItem Header="Item Search">
+                    <views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
+                </TabItem>
+                <TabItem Classes="MainMenuEmpty" Header="" />
+
+                <TabItem Classes="MainMenuTitle" Header="Tracking" />
+                <TabItem Header="Generally">
+                    <views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+                </TabItem>
+                <TabItem Header="Item Search">
+                    <views:ItemSearchView Margin="10" DataContext="{Binding ItemSearchViewModel}" />
+                </TabItem>
+                <TabItem Header="Send Transaction">
+                    <views:TrackingGeneralView Margin="10" DataContext="{Binding TrackingGeneralViewModel}" />
+                </TabItem>
+            </controls:AnimateTabControl>
+		</Border>
+	</Design.PreviewWith>
+
+    <Style Selector="TabControl.Sidebar">
+        <Setter Property="TabStripPlacement" Value="Left" />
+        <Setter Property="DockPanel.Dock" Value="Left" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Border
+					Margin="{TemplateBinding Margin}"
+					BorderBrush="{TemplateBinding BorderBrush}"
+					BorderThickness="{TemplateBinding BorderThickness}">
+					<DockPanel>
+						<ScrollViewer Width="240" Margin="0 30 0 0"
+							Name="PART_ScrollViewer"
+							HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+							VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+							Background="{TemplateBinding Background}"
+							DockPanel.Dock="Left">
+							<ItemsPresenter
+								Name="PART_ItemsPresenter"
+								Items="{TemplateBinding Items}"
+								ItemsPanel="{TemplateBinding ItemsPanel}"
+								ItemTemplate="{TemplateBinding ItemTemplate}">
+							</ItemsPresenter>
+						</ScrollViewer>
+						<ContentControl Content="{TemplateBinding Tag}" HorizontalContentAlignment="Right" DockPanel.Dock="Bottom"/>
+						<ScrollViewer Background="{x:Null}"
+							HorizontalScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem.(ScrollViewer.HorizontalScrollBarVisibility)}"
+							VerticalScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem.(ScrollViewer.VerticalScrollBarVisibility)}">
+							<ContentPresenter
+									Name="PART_SelectedContentHost"
+									Margin="{TemplateBinding Padding}"
+									HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+									VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+									Content="{TemplateBinding SelectedContent}"
+									ContentTemplate="{TemplateBinding SelectedContentTemplate}">
+							</ContentPresenter>
+						</ScrollViewer>
+					</DockPanel>
+				</Border>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+	<Style Selector="TabControl.Sidebar > TabItem">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="5,0,0,0"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="(ScrollViewer.HorizontalScrollBarVisibility)" Value="Auto"/>
+        <Setter Property="(ScrollViewer.VerticalScrollBarVisibility)" Value="Auto"/>
+	</Style>
+	<Style Selector="TabControl.Sidebar > TabItem:selected /template/ Border#PART_SelectedPipe">
+        <Setter Property="Background" Value="{StaticResource SolidColorBrush.Blue.7}" />
+        <Setter Property="Height" Value="22" />
+	</Style>
+	<Style Selector="TabControl.Sidebar > TabItem:selected">
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.3}"/>
+	</Style>
+
+    <Style Selector="TabControl.Sidebar:normal /template/ ContentPresenter">
+        <Style.Animations>
+            <Animation Duration="0:0:0.6" FillMode="Forward" Easing="CubicEaseOut">
+                <KeyFrame Cue="0%">
+                    <Setter Property="TranslateTransform.X" Value="100" />
+                    <Setter Property="Opacity" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="TranslateTransform.X" Value="0" />
+                    <Setter Property="Opacity" Value="1" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="TabControl.Sidebar > TabItem.SidebarTitle">
+		<Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.5}" />
+		<Setter Property="Background" Value="transparent"/>
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="FontSize" Value="12"/>
+		<Setter Property="Margin" Value="-5,-20,0,-20"/>
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="IsEnabled" Value="false"/>
+		<Setter Property="Width" Value="200"/>
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Panel>
+					<ContentPresenter
+					Name="PART_ContentPresenter"
+					Content="{TemplateBinding Header}"
+					VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+				</Panel>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+    <Style Selector="TabControl.Sidebar > TabItem.SidebarEmpty">
+        <Setter Property="Foreground" Value="transparent"/>
+        <Setter Property="Background" Value="transparent"/>
+        <Setter Property="MinHeight" Value="5"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="IsEnabled" Value="false"/>
+    </Style>
+
+</Styles>

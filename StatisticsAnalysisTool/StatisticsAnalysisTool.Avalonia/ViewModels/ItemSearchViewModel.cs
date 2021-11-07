@@ -24,7 +24,14 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
             {
                 "TestItem1",
                 "TestItem2",
-                "TestItem3"
+                "TestItem3",
+                "TestItem4",
+                "TestItem5",
+                "TestItem6",
+                "TestItem7",
+                "TestItem8",
+                "TestItem9",
+                "TestItem10"
             };
 
             Items = items;

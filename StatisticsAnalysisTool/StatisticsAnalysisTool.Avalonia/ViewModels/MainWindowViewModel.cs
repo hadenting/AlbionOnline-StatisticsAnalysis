@@ -1,38 +1,22 @@
-using System.Windows.Input;
-using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private ViewModelBase _navigationContent = new ItemSearchViewModel();
-        private ViewModelBase _mainMenuView = new MainMenuViewModel();
-
-        public ICommand OpenItemSearchClicked { get; }
-
         public MainWindowViewModel()
         {
-            OpenItemSearchClicked = ReactiveCommand.Create(OpenItemSearch);
-        }
-
-        private void OpenItemSearch()
-        {
-            NavigationContent = new ItemSearchViewModel();
+            ItemSearchViewModel = new ItemSearchViewModel();
+            TrackingGeneralViewModel = new TrackingGeneralViewModel();
         }
 
         #region Bindings
 
-        public ViewModelBase NavigationContent
-        {
-            get => _navigationContent;
-            set => this.RaiseAndSetIfChanged(ref _navigationContent, value);
-        }
+        [Reactive]
+        public ItemSearchViewModel ItemSearchViewModel { get; set; }
 
-        public ViewModelBase MainMenuView
-        {
-            get => _mainMenuView;
-            set => this.RaiseAndSetIfChanged(ref _mainMenuView, value);
-        }
+        [Reactive]
+        public TrackingGeneralViewModel TrackingGeneralViewModel { get; set; }
 
         #endregion
     }

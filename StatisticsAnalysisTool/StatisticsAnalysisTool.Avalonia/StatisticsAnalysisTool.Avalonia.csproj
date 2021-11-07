@@ -10,6 +10,7 @@
     <Copyright>Copyright © 2021</Copyright>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Common\" />
     <Folder Include="Converters\" />
     <AvaloniaResource Include="Assets\**" />
     <Folder Include="Models\" />

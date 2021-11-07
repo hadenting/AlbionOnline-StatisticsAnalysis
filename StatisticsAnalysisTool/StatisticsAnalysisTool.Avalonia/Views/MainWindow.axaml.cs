@@ -23,18 +23,6 @@ namespace StatisticsAnalysisTool.Avalonia.Views
             AvaloniaXamlLoader.Load(this);
         }
 
-        public void TrackingGeneral_OnPointerReleased()
-        {
-            var vm = (MainWindowViewModel)DataContext!;
-            vm.NavigationContent = new TrackingGeneralViewModel();
-        }
-
-        public void ItemSearch_OnClick()
-        {
-            var vm = (MainWindowViewModel)DataContext!;
-            vm.NavigationContent = new ItemSearchViewModel();
-        }
-
         private void TitleBar_OnPointerPressed(object? sender, PointerPressedEventArgs e)
         {
             if (e.GetCurrentPoint(null).Properties.PointerUpdateKind == PointerUpdateKind.LeftButtonPressed)
