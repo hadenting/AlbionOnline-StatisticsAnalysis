@@ -1,49 +1,36 @@
-using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
+using StatisticsAnalysisTool.Avalonia.Common;
+using StatisticsAnalysisTool.Avalonia.Models.ItemSearch;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
     public class ItemSearchViewModel : ViewModelBase
     {
-        private ObservableCollection<string> _items = new();
-
         public ItemSearchViewModel()
         {
-            //var items = new ObservableCollection<ItemSearchObject>
-            //{
-            //    new () { UniqueName = "TestItem1" },
-            //    new () { UniqueName = "TestItem1" },
-            //    new () { UniqueName = "TestItem1" },
-            //    new () { UniqueName = "TestItem1" },
-            //    new () { UniqueName = "TestItem1" },
-            //    new () { UniqueName = "TestItem1" },
-            //    new () { UniqueName = "TestItem1" }
-            //};
+            _ = InitItemListAsync();
+        }
 
-            var items = new ObservableCollection<string>
+        public async Task InitItemListAsync()
+        {
+            var isItemListLoaded = await ItemController.GetItemListFromJsonAsync().ConfigureAwait(true);
+            if (!isItemListLoaded)
             {
-                "TestItem1",
-                "TestItem2",
-                "TestItem3",
-                "TestItem4",
-                "TestItem5",
-                "TestItem6",
-                "TestItem7",
-                "TestItem8",
-                "TestItem9",
-                "TestItem10"
-            };
+                //SetErrorBar(Visibility.Visible, LanguageController.Translation("ITEM_LIST_CAN_NOT_BE_LOADED"));
+                //GridTryToLoadTheItemListAgainVisibility = Visibility.Visible;
 
-            Items = items;
+                //return;
+            }
+
+            Items = ItemController.ItemSearchObjects;
         }
 
         #region Bindings
 
-        public ObservableCollection<string> Items
-        {
-            get => _items;
-            set => this.RaiseAndSetIfChanged(ref _items, value);
-        }
+        [Reactive]
+        public ObservableCollection<ItemSearchObject>? Items { get; set; }
 
         #endregion
     }

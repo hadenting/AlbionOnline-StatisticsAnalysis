@@ -2,7 +2,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
-using StatisticsAnalysisTool.Avalonia.ViewModels;
+using StatisticsAnalysisTool.Avalonia.Controls;
+using System;
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable UnusedMember.Local
 
@@ -28,6 +29,14 @@ namespace StatisticsAnalysisTool.Avalonia.Views
             if (e.GetCurrentPoint(null).Properties.PointerUpdateKind == PointerUpdateKind.LeftButtonPressed)
             {
                 PlatformImpl?.BeginMoveDrag(e);
+            }
+        }
+
+        private void MainWindow_OnOpened(object? sender, EventArgs e)
+        {
+            if (DataContext is ICloseWindow vm)
+            {
+                vm.Close += Close;
             }
         }
     }

@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="StatisticsAnalysisTool.Avalonia.Views.ItemSearchView"
              xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
-             xmlns:models="clr-namespace:StatisticsAnalysisTool.Avalonia.Models">
+             xmlns:itemSearch="clr-namespace:StatisticsAnalysisTool.Avalonia.Models.ItemSearch">
     <Design.DataContext>
 		<viewModels:ItemSearchViewModel />
     </Design.DataContext>
@@ -17,32 +17,18 @@
                 <TextBox Height="20" Width="350" VerticalAlignment="Top" HorizontalAlignment="Left" />
             </Grid>
             <ScrollViewer>
-                <Grid Width="NaN" MinHeight="300" Height="NaN">
+                <Grid Width="NaN" MinHeight="200" Height="NaN">
 
-                    <ItemsRepeater Height="200" Width="200" Items="{Binding Items}"> 
-                        <ItemsRepeater.DataTemplates>
-                            <DataTemplate DataType="{x:Type models:ItemSearchObject}">
-                                <Grid ColumnDefinitions="Auto,4,Auto">
-                                    <TextBlock Grid.Row="0" Grid.Column="0">Item: </TextBlock>
-                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding UniqueName}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsRepeater.DataTemplates>
+                    <ItemsRepeater Items="{Binding Items}">
+						<ItemsRepeater.ItemTemplate>
+							<DataTemplate DataType="{x:Type itemSearch:ItemSearchObject}">
+								<Grid ColumnDefinitions="Auto,4,Auto">
+									<TextBlock Grid.Row="0" Grid.Column="0">Item: </TextBlock>
+									<TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding LocalizedNameAndEnglish}"/>
+								</Grid>
+							</DataTemplate>
+						</ItemsRepeater.ItemTemplate>
                     </ItemsRepeater>
-
-					<!--<ScrollViewer Height="200" Width="200">
-                        <ItemsRepeater Height="200" Width="200" Items="{Binding Items}">
-                            <ItemsRepeater.ItemTemplate>
-                                <DataTemplate>
-                                    --><!--<uc:ItemViewUserControl />--><!--
-                                    <Label>TEXT</Label>
-                                    --><!--<DockPanel>
-                                        <Label Content="{Binding Name, FallbackValue=NAME}" />
-                                    </DockPanel>--><!--
-                                </DataTemplate>
-                            </ItemsRepeater.ItemTemplate>
-                        </ItemsRepeater>
-                    </ScrollViewer>-->
 
                 </Grid>
             </ScrollViewer>

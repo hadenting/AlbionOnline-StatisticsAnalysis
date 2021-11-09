@@ -12,7 +12,8 @@
         Title="StatisticsAnalysisTool.Avalonia"
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
-        ExtendClientAreaToDecorationsHint="True">
+        ExtendClientAreaToDecorationsHint="True" 
+        Opened="MainWindow_OnOpened">
     <Design.DataContext>
         <viewModels:MainWindowViewModel/>
     </Design.DataContext>
