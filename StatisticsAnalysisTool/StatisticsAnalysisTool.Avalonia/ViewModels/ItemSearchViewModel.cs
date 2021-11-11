@@ -10,10 +10,10 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
     {
         public ItemSearchViewModel()
         {
-            _ = InitItemListAsync();
+            _ = InitItemsAsync();
         }
 
-        public async Task InitItemListAsync()
+        public async Task InitItemsAsync()
         {
             var isItemListLoaded = await ItemController.GetItemListFromJsonAsync().ConfigureAwait(true);
             if (!isItemListLoaded)
