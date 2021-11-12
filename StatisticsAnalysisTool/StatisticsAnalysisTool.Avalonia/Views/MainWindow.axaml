@@ -5,7 +5,7 @@
         xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
         xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views"
         xmlns:controls="clr-namespace:StatisticsAnalysisTool.Avalonia.Controls"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="500"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="400"
 		MinHeight="400" MinWidth="600"
 		Height="500" Width="900"
         x:Class="StatisticsAnalysisTool.Avalonia.Views.MainWindow"

@@ -8,5 +8,6 @@
         public static string DefaultItemListSourceUrl => "https://raw.githubusercontent.com/broderickhyman/ao-bin-dumps/master/formatted/items.json";
         public static string LanguageDirectoryName => "Languages";
         public static string DefaultLanguageCultureName => "DefaultLanguageCultureName";
+        public static string ImageResources => "ImageResources";
     }
 }

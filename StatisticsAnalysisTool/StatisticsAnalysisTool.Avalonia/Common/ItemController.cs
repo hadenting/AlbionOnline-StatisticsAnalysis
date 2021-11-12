@@ -19,7 +19,7 @@ namespace StatisticsAnalysisTool.Avalonia.Common
     public class ItemController
     {
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
-        public static ObservableCollection<ItemSearchObject> ItemSearchObjects;
+        public static ObservableCollection<ItemSearchObject>? ItemSearchObjects;
 
         #region Item search list
 
@@ -47,7 +47,7 @@ namespace StatisticsAnalysisTool.Avalonia.Common
                 }
 
                 ItemSearchObjects = await GetItemListFromLocal();
-                return ItemSearchObjects?.Count > 0;
+                return ItemSearchObjects.Count > 0;
             }
 
             if (await GetItemListFromWebAsync(url))
@@ -189,10 +189,6 @@ namespace StatisticsAnalysisTool.Avalonia.Common
         //    {
         //    }
         //}
-
-        #endregion
-
-        #region Helper methods
 
         public static string LocalizedName(LocalizedNames? localizedNames, string? currentLanguage = null, string alternativeName = "NO_ITEM_NAME")
         {
