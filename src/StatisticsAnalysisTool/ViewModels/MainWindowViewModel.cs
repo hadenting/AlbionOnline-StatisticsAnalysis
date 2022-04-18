@@ -409,6 +409,7 @@ namespace StatisticsAnalysisTool.ViewModels
             await DungeonObjectData.GetDataListFromJsonAsync().ConfigureAwait(true);
 
             TrackingController ??= new TrackingController(this, _mainWindow);
+            NetworkManager.Init(this, TrackingController);
 
             StartTracking();
 
@@ -714,8 +715,14 @@ namespace StatisticsAnalysisTool.ViewModels
             TrackingController?.CountUpTimer.Start();
 
             DungeonStatsFilter = new DungeonStatsFilter(TrackingController);
+            
+            if (!NetworkManager.StartDeviceCapture())
+            {
+                SetErrorBar(Visibility.Visible, LanguageController.Translation("PACKET_HANDLER_ERROR_MESSAGE"));
+                StopTracking();
+                return;
+            }
 
-            IsTrackingActive = NetworkManager.StartNetworkCapture(this, TrackingController);
             Console.WriteLine(@"### Start Tracking...");
         }
 

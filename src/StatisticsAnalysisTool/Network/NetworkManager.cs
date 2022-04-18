@@ -17,34 +17,27 @@ namespace StatisticsAnalysisTool.Network
     {
         private static PhotonParser _receiver;
         private static MainWindowViewModel _mainWindowViewModel;
-        private static readonly List<ICaptureDevice> CapturedDevices = new();
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
+        public static List<ICaptureDevice> CapturedDevices { get; } = new();
         public static bool IsNetworkCaptureRunning => CapturedDevices.Where(device => device.Started).Any(device => device.Started);
 
-        public static bool StartNetworkCapture(MainWindowViewModel mainWindowViewModel, TrackingController trackingController)
+        public static void Init(MainWindowViewModel mainWindowViewModel, TrackingController trackingController)
         {
             _mainWindowViewModel = mainWindowViewModel;
             _receiver = new AlbionPackageParser(trackingController, mainWindowViewModel);
-
-            try
-            {
-                CapturedDevices.AddRange(CaptureDeviceList.Instance);
-                return StartDeviceCapture();
-            }
-            catch (Exception e)
-            {
-                ConsoleManager.WriteLineForError(MethodBase.GetCurrentMethod()?.DeclaringType, e);
-                Log.Error(MethodBase.GetCurrentMethod()?.DeclaringType, e);
-                _mainWindowViewModel.SetErrorBar(Visibility.Visible, LanguageController.Translation("PACKET_HANDLER_ERROR_MESSAGE"));
-                _mainWindowViewModel.StopTracking();
-                return false;
-            }
+            SetCaptureDevices();
         }
 
-        private static bool StartDeviceCapture()
+        public static void SetCaptureDevices()
         {
-            if (CapturedDevices.Count <= 0)
+            CapturedDevices.Clear();
+            CapturedDevices.AddRange(CaptureDeviceList.Instance);
+        }
+
+        public static bool StartDeviceCapture()
+        {
+            if (CapturedDevices.Count <= 0 || _mainWindowViewModel == null || _receiver == null)
             {
                 return false;
             }
@@ -60,8 +53,6 @@ namespace StatisticsAnalysisTool.Network
             {
                 ConsoleManager.WriteLineForError(MethodBase.GetCurrentMethod()?.DeclaringType, e);
                 Log.Error(MethodBase.GetCurrentMethod()?.DeclaringType, e);
-                _mainWindowViewModel.SetErrorBar(Visibility.Visible, LanguageController.Translation("PACKET_HANDLER_ERROR_MESSAGE"));
-                _mainWindowViewModel.StopTracking();
                 return false;
             }
 
@@ -81,16 +72,18 @@ namespace StatisticsAnalysisTool.Network
 
         private static void PacketEvent(ICaptureDevice device)
         {
-            if (!device.Started)
+            if (device.Started)
             {
-                device.Open(new DeviceConfiguration()
-                {
-                    Mode = DeviceModes.DataTransferUdp,
-                    ReadTimeout = 5000
-                });
-                device.OnPacketArrival += Device_OnPacketArrival;
-                device.StartCapture();
+                return;
             }
+
+            device.Open(new DeviceConfiguration()
+            {
+                Mode = DeviceModes.DataTransferUdp,
+                ReadTimeout = 5000
+            });
+            device.OnPacketArrival += Device_OnPacketArrival;
+            device.StartCapture();
         }
 
         private static void Device_OnPacketArrival(object sender, PacketCapture e)
