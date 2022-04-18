@@ -110,5 +110,29 @@ namespace StatisticsAnalysisTool.Network
                 Log.Error(nameof(Device_OnPacketArrival), exc);
             }
         }
+
+        public static bool SetCaptureDevice(ICaptureDevice deviceToSet)
+        {
+            try
+            {
+                foreach (var device in CapturedDevices.Where(device => device.Started))
+                {
+                    device.StopCapture();
+                    device.Close();
+                }
+
+                PacketEvent(deviceToSet);
+            }
+            catch (Exception e)
+            {
+                ConsoleManager.WriteLineForError(MethodBase.GetCurrentMethod()?.DeclaringType, e);
+                Log.Error(MethodBase.GetCurrentMethod()?.DeclaringType, e);
+                _mainWindowViewModel.SetErrorBar(Visibility.Visible, LanguageController.Translation("PACKET_HANDLER_ERROR_MESSAGE"));
+                _mainWindowViewModel.StopTracking();
+                return false;
+            }
+
+            return true;
+        }
     }
 }

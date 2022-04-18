@@ -1,8 +1,11 @@
 ﻿using log4net;
+using SharpPcap.LibPcap;
 using StatisticsAnalysisTool.Common;
 using StatisticsAnalysisTool.Common.UserSettings;
 using StatisticsAnalysisTool.Models;
+using StatisticsAnalysisTool.Network;
 using StatisticsAnalysisTool.Properties;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
@@ -37,6 +40,8 @@ namespace StatisticsAnalysisTool.ViewModels
         private bool _isSuggestPreReleaseUpdatesActive;
         private bool _isItemRealNameInLoggingExportActive;
         private string _mainTrackingCharacterName;
+        private List<CaptureDeviceInformation> _capturedDevices = new();
+        private CaptureDeviceInformation _capturedDeviceSelection;
 
         public SettingsWindowViewModel()
         {
@@ -46,9 +51,9 @@ namespace StatisticsAnalysisTool.ViewModels
 
         private void InitializeSettings()
         {
-            #region Language
-
             SettingsController.LoadSettings();
+
+            #region Language
 
             Languages.Clear();
             LanguageController.InitializeLanguage();
@@ -118,7 +123,7 @@ namespace StatisticsAnalysisTool.ViewModels
             UpdateItemsJsonByDaysSelection = UpdateItemsJsonByDays.FirstOrDefault(x => x.Value == SettingsController.CurrentSettings.UpdateItemsJsonByDays);
 
             ItemsJsonSourceUrl = SettingsController.CurrentSettings.ItemsJsonSourceUrl;
-            
+
             #endregion
 
             #region Alert Sounds
@@ -155,6 +160,12 @@ namespace StatisticsAnalysisTool.ViewModels
 
             #endregion
 
+            #region Captured devices
+
+            LoadCapturedDevices();
+
+            #endregion
+
             IsOpenItemWindowInNewWindowChecked = SettingsController.CurrentSettings.IsOpenItemWindowInNewWindowChecked;
             ShowInfoWindowOnStartChecked = SettingsController.CurrentSettings.IsInfoWindowShownOnStart;
         }
@@ -181,8 +192,10 @@ namespace StatisticsAnalysisTool.ViewModels
             SettingsController.CurrentSettings.IsLootLoggerSaveReminderActive = IsLootLoggerSaveReminderActive;
             SettingsController.CurrentSettings.IsItemRealNameInLoggingExportActive = IsItemRealNameInLoggingExportActive;
             SettingsController.CurrentSettings.IsSuggestPreReleaseUpdatesActive = IsSuggestPreReleaseUpdatesActive;
+            SettingsController.CurrentSettings.CapturedDeviceSelectionDisplayName = CapturedDeviceSelection.DisplayName;
+            _ = NetworkManager.SetCaptureDevice(_capturedDeviceSelection.Device);
 
-            SetAppSettingsAndTranslations();
+            Translation = new SettingsWindowTranslation();
         }
 
         public void ReloadSettings()
@@ -190,9 +203,18 @@ namespace StatisticsAnalysisTool.ViewModels
             MainTrackingCharacterName = SettingsController.CurrentSettings.MainTrackingCharacterName;
         }
 
-        private void SetAppSettingsAndTranslations()
+        public void LoadCapturedDevices()
         {
-            Translation = new SettingsWindowTranslation();
+            CapturedDevices.Clear();
+            CapturedDevices.Add(new CaptureDeviceInformation() { Device = new CaptureFileReaderDevice(""), DisplayName = Translation.All, IsAllDevicesActive = true });
+
+            foreach (var capturedDevice in NetworkManager.CapturedDevices)
+            {
+                CapturedDevices.Add(new CaptureDeviceInformation() { Device = capturedDevice, DisplayName = capturedDevice.Description, IsAllDevicesActive = false });
+            }
+
+            CapturedDeviceSelection = CapturedDevices.FirstOrDefault(x => x.DisplayName == SettingsController.CurrentSettings.CapturedDeviceSelectionDisplayName) ??
+                                      CapturedDevices.FirstOrDefault(x => x.IsAllDevicesActive);
         }
 
         public struct FileSettingInformation
@@ -222,7 +244,27 @@ namespace StatisticsAnalysisTool.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
+        public List<CaptureDeviceInformation> CapturedDevices
+        {
+            get => _capturedDevices;
+            set
+            {
+                _capturedDevices = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public CaptureDeviceInformation CapturedDeviceSelection
+        {
+            get => _capturedDeviceSelection;
+            set
+            {
+                _capturedDeviceSelection = value;
+                OnPropertyChanged();
+            }
+        }
+
         public FileSettingInformation UpdateItemListByDaysSelection
         {
             get => _updateItemListByDaysSelection;
@@ -422,7 +464,7 @@ namespace StatisticsAnalysisTool.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public string ToolDirectory => System.AppDomain.CurrentDomain.BaseDirectory;
 
         public event PropertyChangedEventHandler PropertyChanged;

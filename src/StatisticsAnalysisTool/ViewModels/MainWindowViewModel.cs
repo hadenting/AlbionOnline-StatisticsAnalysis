@@ -715,14 +715,15 @@ namespace StatisticsAnalysisTool.ViewModels
             TrackingController?.CountUpTimer.Start();
 
             DungeonStatsFilter = new DungeonStatsFilter(TrackingController);
-            
-            if (!NetworkManager.StartDeviceCapture())
+
+            IsTrackingActive = NetworkManager.StartDeviceCapture();
+            if (!IsTrackingActive)
             {
                 SetErrorBar(Visibility.Visible, LanguageController.Translation("PACKET_HANDLER_ERROR_MESSAGE"));
                 StopTracking();
                 return;
             }
-
+            
             Console.WriteLine(@"### Start Tracking...");
         }
 
@@ -1975,13 +1976,7 @@ namespace StatisticsAnalysisTool.ViewModels
         #endregion Bindings
 
         #region Structs
-
-        public struct ModeStruct
-        {
-            public string Name { get; set; }
-            public ViewMode ViewMode { get; set; }
-        }
-
+        
         public struct DamageMeterSortStruct
         {
             public string Name { get; set; }
@@ -1989,13 +1984,5 @@ namespace StatisticsAnalysisTool.ViewModels
         }
 
         #endregion
-    }
-
-    public enum ViewMode
-    {
-        Normal,
-        Tracking,
-        Player,
-        Gold
     }
 }

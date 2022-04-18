@@ -41,7 +41,7 @@ namespace StatisticsAnalysisTool.Network.Handler
                 IsVisible = Visibility.Collapsed
             };
 
-            await AddEntityAsync(value.UserObjectId, value.Guid, value.InteractGuid, value.Username, GameObjectType.Player, GameObjectSubType.LocalPlayer);
+            await AddEntityAsync(value.UserObjectId, value.Guid, value.InteractGuid, value.Username);
 
             _trackingController.DungeonController?.AddDungeonAsync(value.MapType, value.DungeonGuid).ConfigureAwait(false);
 
@@ -69,7 +69,7 @@ namespace StatisticsAnalysisTool.Network.Handler
             });
         }
 
-        private async Task AddEntityAsync(long? userObjectId, Guid? guid, Guid? interactGuid, string name, GameObjectType gameObjectType, GameObjectSubType gameObjectSubType)
+        private async Task AddEntityAsync(long? userObjectId, Guid? guid, Guid? interactGuid, string name)
         {
             if (guid == null || interactGuid == null || userObjectId == null)
             {

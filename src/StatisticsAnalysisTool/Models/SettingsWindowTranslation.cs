@@ -32,5 +32,7 @@ namespace StatisticsAnalysisTool.Models
         public string SuggestPreReleaseUpdates => LanguageController.Translation("SUGGEST_PRE_RELEASE_UPDATES");
         public string AttentionTheseVersionsAreStillBeingTested => LanguageController.Translation("ATTENTION_THESE_VERSION_ARE_STILL_BEING_TESTED");
         public string CharacterNameToTrack => LanguageController.Translation("CHARACTER_NAME_TO_TRACK");
+        public string CapturedDeviceForTracking => LanguageController.Translation("CAPTURED_DEVICE_FOR_TRACKING");
+        public string All => LanguageController.Translation("ALL");
     }
 }

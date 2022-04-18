@@ -38,5 +38,6 @@
         public bool IsSuggestPreReleaseUpdatesActive { get; set; }
         public bool IsLootFromMobShown { get; set; }
         public bool IsItemRealNameInLoggingExportActive { get; set; }
+        public string CapturedDeviceSelectionDisplayName { get; set; }
     }
 }

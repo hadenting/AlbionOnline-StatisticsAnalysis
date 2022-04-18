@@ -57,5 +57,10 @@ namespace StatisticsAnalysisTool.UserControls
         {
             _settingsWindowViewModel.ReloadSettings();
         }
+
+        private void SetDevices_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _settingsWindowViewModel.LoadCapturedDevices();
+        }
     }
 }

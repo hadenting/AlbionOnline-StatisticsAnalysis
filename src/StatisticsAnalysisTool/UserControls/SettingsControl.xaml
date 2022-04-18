@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance Type=viewModels:SettingsWindowViewModel}">
+             d:DesignHeight="750" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=viewModels:SettingsWindowViewModel}"
+             Loaded="SetDevices_OnLoaded">
     <Grid IsVisibleChanged="ReloadSettings_OnIsVisibleChanged">
         <Grid Margin="0,0,0,44">
             <ScrollViewer>
@@ -85,6 +86,11 @@
                     <DockPanel Margin="0,5,0,0">
                         <Label Content="{Binding Translation.ExportLootLoggingFileWithRealItemName, FallbackValue=EXPORT__LOOT__LOGGING__FILE__WITH__REAL__ITEM__NAME}" MinWidth="300" VerticalAlignment="Top" />
                         <CheckBox IsChecked="{Binding IsItemRealNameInLoggingExportActive}" Height="21" VerticalContentAlignment="Center" />
+                    </DockPanel>
+                    <DockPanel Margin="0,5,0,0">
+                        <Label Content="{Binding Translation.CapturedDeviceForTracking, FallbackValue=CAPTURED_DEVICE_FOR_TRACKING}" MinWidth="300" VerticalAlignment="Top" />
+                        <ComboBox ItemsSource="{Binding CapturedDevices}" SelectedItem="{Binding CapturedDeviceSelection}" IsSynchronizedWithCurrentItem="True" 
+                                  DisplayMemberPath="DisplayName" SelectedValuePath="Device" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="26" />
                     </DockPanel>
                     <DockPanel Margin="0,5,0,0">
                         <Label Content="{Binding Translation.SuggestPreReleaseUpdates, FallbackValue=SUGGEST__PRE__RELEASE__UPDATES}" MinWidth="300" VerticalAlignment="Top" />
