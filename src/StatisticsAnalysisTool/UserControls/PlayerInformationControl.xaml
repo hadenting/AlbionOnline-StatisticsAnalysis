@@ -4,15 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.ViewModels"
+             xmlns:fa5="http://schemas.fontawesome.com/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=viewModels:PlayerInformationViewModel}">
     <Grid>
-        <TextBox x:Name="TxtBoxPlayerModeUsername" Text="{Binding SavedPlayerInformationName}" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="200" KeyDown="TxtBoxPlayerModeUsername_KeyDown" />
-        <Button x:Name="BtnPlayerModeSave" Content="{Binding PlayerModeTranslation.Load, FallbackValue=LOAD}" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top" 
-                Width="110" Height="25" Click="BtnPlayerModeSave_Click" />
-        <ScrollViewer  Margin="0,40,0,20" HorizontalScrollBarVisibility="Disabled">
+        <Grid ZIndex="2">
+            <TextBox HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="TextBoxPlayerSearch_OnTextChanged" />
+            <ListBox SelectionMode="Single" SelectionChanged="ListBoxUserSearch_OnSelectionChanged" 
+                     Visibility="{Binding ListBoxUserSearchVisibility, FallbackValue=Collapsed}" ItemsSource="{Binding ListBoxUserSearchItems}" 
+                     SelectedValuePath="Value" DisplayMemberPath="Name" Margin="10,35,0,0" HorizontalAlignment="Left" Width="200" MinHeight="50" MaxHeight="100" VerticalAlignment="Top"  />
+            <Grid Style="{StaticResource LoadingIconGridStyle}" Margin="215,10,0,0">
+                <fa5:ImageAwesome Visibility="{Binding LoadIconVisibility}" Style="{StaticResource LoadingIconStyle}" />
+            </Grid>
+        </Grid>
+
+        <ScrollViewer  Margin="0,60,0,20" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Margin="10,5,10,10">
                 <StackPanel Margin="0,0,0,20">
                     <Grid Margin="0,0,0,-15">

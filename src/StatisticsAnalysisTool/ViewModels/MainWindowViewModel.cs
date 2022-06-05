@@ -37,9 +37,7 @@ namespace StatisticsAnalysisTool.ViewModels
     {
         private static MainWindow _mainWindow;
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
-
-        private static PlayerModeInformationModel _playerModeInformationLocal;
-        private static PlayerModeInformationModel _playerModeInformation;
+        
         private double _allianceInfoWidth;
         private double _currentMapInfoWidth;
         private ObservableCollection<DamageMeterFragment> _damageMeter = new();
@@ -66,7 +64,6 @@ namespace StatisticsAnalysisTool.ViewModels
         private string _numberOfValuesTranslation;
         private ObservableCollection<PartyMemberCircle> _partyMemberCircles = new();
         private PlayerModeTranslation _playerModeTranslation = new();
-        private string _savedPlayerInformationName;
         private string _searchText;
         private ShopSubCategory _selectedItemShopSubCategories;
         private ItemLevel _selectedItemLevel;
@@ -154,13 +151,7 @@ namespace StatisticsAnalysisTool.ViewModels
             SelectedItemLevel = ItemLevel.Unknown;
 
             #endregion Full Item Info elements
-
-            #region Player information
-
-            SavedPlayerInformationName = SettingsController.CurrentSettings.SavedPlayerInformationName;
-
-            #endregion Player information
-
+            
             #region Tracking
 
             UserTrackingBindings.UsernameInformationVisibility = Visibility.Hidden;
@@ -600,60 +591,7 @@ namespace StatisticsAnalysisTool.ViewModels
         }
 
         #endregion
-
-        #region Player information
-
-        public async Task SetComparedPlayerModeInfoValues()
-        {
-            PlayerModeInformationLocal = PlayerModeInformation;
-            PlayerModeInformation = new PlayerModeInformationModel();
-            PlayerModeInformation = await GetPlayerModeInformationByApi().ConfigureAwait(true);
-        }
-
-        private async Task<PlayerModeInformationModel> GetPlayerModeInformationByApi()
-        {
-            if (string.IsNullOrWhiteSpace(SavedPlayerInformationName))
-                return null;
-
-            var gameInfoSearch = await ApiController.GetGameInfoSearchFromJsonAsync(SavedPlayerInformationName);
-
-            if (gameInfoSearch?.SearchPlayer?.FirstOrDefault()?.Id == null)
-                return null;
-
-            var searchPlayer = gameInfoSearch.SearchPlayer?.FirstOrDefault();
-            var gameInfoPlayers = await ApiController.GetGameInfoPlayersFromJsonAsync(gameInfoSearch.SearchPlayer?.FirstOrDefault()?.Id);
-
-            return new PlayerModeInformationModel
-            {
-                Timestamp = DateTime.UtcNow,
-                GameInfoSearch = gameInfoSearch,
-                SearchPlayer = searchPlayer,
-                GameInfoPlayers = gameInfoPlayers
-            };
-        }
-
-        public PlayerModeInformationModel PlayerModeInformation
-        {
-            get => _playerModeInformation;
-            set
-            {
-                _playerModeInformation = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public PlayerModeInformationModel PlayerModeInformationLocal
-        {
-            get => _playerModeInformationLocal;
-            set
-            {
-                _playerModeInformationLocal = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion Player information (Player Mode)
-
+        
         #region Tracking
 
         public void StartTracking()
@@ -1431,18 +1369,7 @@ namespace StatisticsAnalysisTool.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public string SavedPlayerInformationName
-        {
-            get => _savedPlayerInformationName;
-            set
-            {
-                _savedPlayerInformationName = value;
-                SettingsController.CurrentSettings.SavedPlayerInformationName = _savedPlayerInformationName;
-                OnPropertyChanged();
-            }
-        }
-
+        
         public ObservableCollection<MainStatObject> FactionPointStats
         {
             get => _factionPointStats;
@@ -1660,12 +1587,6 @@ namespace StatisticsAnalysisTool.ViewModels
 
         #region Structs
 
-        public struct ModeStruct
-        {
-            public string Name { get; set; }
-            public ViewMode ViewMode { get; set; }
-        }
-
         public struct DamageMeterSortStruct
         {
             public string Name { get; set; }
@@ -1673,13 +1594,5 @@ namespace StatisticsAnalysisTool.ViewModels
         }
 
         #endregion
-    }
-
-    public enum ViewMode
-    {
-        Normal,
-        Tracking,
-        Player,
-        Gold
     }
 }

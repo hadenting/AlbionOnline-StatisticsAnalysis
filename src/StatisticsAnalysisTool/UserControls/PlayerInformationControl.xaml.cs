@@ -1,6 +1,6 @@
-﻿using System.Windows;
-using StatisticsAnalysisTool.ViewModels;
-using System.Windows.Input;
+﻿using StatisticsAnalysisTool.ViewModels;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace StatisticsAnalysisTool.UserControls
 {
@@ -18,19 +18,23 @@ namespace StatisticsAnalysisTool.UserControls
             DataContext = _playerInformationViewModel;
         }
 
-        private async void BtnPlayerModeSave_Click(object sender, RoutedEventArgs e)
+        private async void ListBoxUserSearch_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await _playerInformationViewModel.SetComparedPlayerModeInfoValues();
-        }
-
-        private async void TxtBoxPlayerModeUsername_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key != Key.Enter)
+            var selectedItem = e?.AddedItems?.OfType<PlayerInformationViewModel.PlayerSearchStruct>().FirstOrDefault();
+            if (selectedItem?.Value?.Name == null)
             {
                 return;
             }
 
-            await _playerInformationViewModel.SetComparedPlayerModeInfoValues();
+            await _playerInformationViewModel.LoadPlayerDataAsync(selectedItem?.Value?.Name);
+        }
+
+        private async void TextBoxPlayerSearch_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                await _playerInformationViewModel.UpdateUsernameListBoxAsync(textBox.Text);
+            }
         }
     }
 }

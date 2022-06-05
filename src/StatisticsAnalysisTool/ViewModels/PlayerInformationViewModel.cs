@@ -1,12 +1,13 @@
 ﻿using StatisticsAnalysisTool.Common;
-using StatisticsAnalysisTool.Common.UserSettings;
 using StatisticsAnalysisTool.Models;
+using StatisticsAnalysisTool.Properties;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using StatisticsAnalysisTool.Properties;
+using System.Windows;
 
 namespace StatisticsAnalysisTool.ViewModels
 {
@@ -14,30 +15,29 @@ namespace StatisticsAnalysisTool.ViewModels
     {
         private PlayerModeInformationModel _playerModeInformation;
         private PlayerModeInformationModel _playerModeInformationLocal;
-        private string _savedPlayerInformationName;
         private PlayerModeTranslation _playerModeTranslation;
+        private Visibility _listBoxUserSearchVisibility = Visibility.Collapsed;
+        private ObservableCollection<PlayerSearchStruct> _listBoxUserSearchItems = new();
+        private Visibility _loadIconVisibility = Visibility.Collapsed;
 
         public PlayerInformationViewModel()
         {
             PlayerModeTranslation = new PlayerModeTranslation();
         }
-
-        public async Task SetComparedPlayerModeInfoValues()
+        
+        private async Task<PlayerModeInformationModel> GetPlayerInformationAsync(string playerName)
         {
-            PlayerModeInformationLocal = PlayerModeInformation;
-            PlayerModeInformation = new PlayerModeInformationModel();
-            PlayerModeInformation = await GetPlayerModeInformationByApi().ConfigureAwait(true);
-        }
-
-        private async Task<PlayerModeInformationModel> GetPlayerModeInformationByApi()
-        {
-            if (string.IsNullOrWhiteSpace(SavedPlayerInformationName))
+            if (string.IsNullOrWhiteSpace(playerName))
+            {
                 return null;
+            }
 
-            var gameInfoSearch = await ApiController.GetGameInfoSearchFromJsonAsync(SavedPlayerInformationName);
+            var gameInfoSearch = await ApiController.GetGameInfoSearchFromJsonAsync(playerName);
 
             if (gameInfoSearch?.SearchPlayer?.FirstOrDefault()?.Id == null)
+            {
                 return null;
+            }
 
             var searchPlayer = gameInfoSearch.SearchPlayer?.FirstOrDefault();
             var gameInfoPlayers = await ApiController.GetGameInfoPlayersFromJsonAsync(gameInfoSearch.SearchPlayer?.FirstOrDefault()?.Id);
@@ -49,6 +49,82 @@ namespace StatisticsAnalysisTool.ViewModels
                 SearchPlayer = searchPlayer,
                 GameInfoPlayers = gameInfoPlayers
             };
+        }
+
+        public async Task UpdateUsernameListBoxAsync(string searchText)
+        {
+            LoadIconVisibility = Visibility.Visible;
+            ListBoxUserSearchItems.Clear();
+
+            if (searchText.Length < 3)
+            {
+                LoadIconVisibility = Visibility.Collapsed;
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                var users = await ApiController.GetGameInfoSearchFromJsonAsync(searchText);
+
+                foreach (var user in users.SearchPlayer)
+                {
+                    ListBoxUserSearchItems.Add(new PlayerSearchStruct() { Name = user.Name, Value = user });
+                }
+
+                if (ListBoxUserSearchItems.Count > 0)
+                {
+                    ListBoxUserSearchVisibility = Visibility.Visible;
+                }
+            }
+
+            if (ListBoxUserSearchItems.Count <= 0)
+            {
+                ListBoxUserSearchVisibility = Visibility.Collapsed;
+            }
+
+            LoadIconVisibility = Visibility.Collapsed;
+        }
+
+        public async Task LoadPlayerDataAsync(string playerName)
+        {
+            ListBoxUserSearchVisibility = Visibility.Collapsed;
+            PlayerModeInformation = await GetPlayerInformationAsync(playerName);
+        }
+
+        public struct PlayerSearchStruct
+        {
+            public string Name { get; set; }
+            public SearchPlayerResponse Value { get; set; }
+        }
+        
+        public Visibility ListBoxUserSearchVisibility
+        {
+            get => _listBoxUserSearchVisibility;
+            set
+            {
+                _listBoxUserSearchVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<PlayerSearchStruct> ListBoxUserSearchItems
+        {
+            get => _listBoxUserSearchItems;
+            set
+            {
+                _listBoxUserSearchItems = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility LoadIconVisibility
+        {
+            get => _loadIconVisibility;
+            set
+            {
+                _loadIconVisibility = value;
+                OnPropertyChanged();
+            }
         }
 
         public PlayerModeTranslation PlayerModeTranslation
@@ -80,18 +156,7 @@ namespace StatisticsAnalysisTool.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public string SavedPlayerInformationName
-        {
-            get => _savedPlayerInformationName;
-            set
-            {
-                _savedPlayerInformationName = value;
-                SettingsController.CurrentSettings.SavedPlayerInformationName = _savedPlayerInformationName;
-                OnPropertyChanged();
-            }
-        }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
