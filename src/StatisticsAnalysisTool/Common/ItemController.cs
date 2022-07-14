@@ -357,7 +357,7 @@ namespace StatisticsAnalysisTool.Common
             await Task.WhenAll(tasks);
         }
 
-        private static async Task<ItemJsonObject> GetSpecificItemInfoAsync(string uniqueName)
+        public static async Task<ItemJsonObject> GetSpecificItemInfoAsync(string uniqueName)
         {
             var cleanUniqueName = GetCleanUniqueName(uniqueName);
 

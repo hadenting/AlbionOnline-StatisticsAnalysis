@@ -73,7 +73,7 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
 
-    <DataTemplate DataType="{x:Type itemWindowModel:RequiredResource}">
+    <DataTemplate x:Key="RequiredResourceTemplate" DataType="{x:Type itemWindowModel:RequiredResource}">
         <StackPanel Orientation="Horizontal" Margin="5,0,5,5">
             <Image Source="{Binding Icon}" HorizontalAlignment="Left" Height="50" Width="50" Margin="0,0,0,0" VerticalAlignment="Top" />
             <StackPanel Orientation="Vertical">
@@ -94,6 +94,7 @@
                         <Label Content="{Binding TranslationOneProductionAmount, FallbackValue=ONE__PRODUCTION__AMOUNT}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
                         <Label Content="{Binding TranslationTotalQuantity, FallbackValue=TOTAL__QUANTITY}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
                         <Label Content="{Binding TranslationTotalCost, FallbackValue=TOTAL__COST}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
+                        <Label Content="{Binding TranslationTotalWeight, FallbackValue=TOTAL__WEIGHT}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <TextBox Text="{Binding ResourceCost}" Style="{StaticResource TextBox.Crafting}" common:TextBoxHelper.OnlyNumeric="Int" />
@@ -103,6 +104,7 @@
                         <Label Content="{Binding OneProductionAmount}" Style="{StaticResource Label.Crafting}" />
                         <Label Content="{Binding TotalQuantity}" ContentStringFormat="{}{0:N0}" Style="{StaticResource Label.Crafting}" />
                         <Label Content="{Binding TotalCost}" ContentStringFormat="{}{0:N0}" Style="{StaticResource Label.Crafting}" />
+                        <Label Content="{Binding TotalWeight}" ContentStringFormat="{}{0:N2}" Style="{StaticResource Label.Crafting}" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -199,6 +201,8 @@
                             <Label Content="{Binding TranslationCostsPerJournal, FallbackValue=COSTS__PER__JOURNAL}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
                             <Label Content="{Binding TranslationGetPrice, FallbackValue=GET__PRICE}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
                             <Label Content="{Binding TranslationRequiredJournalAmount, FallbackValue=REQUIRED__JOURNAL__AMOUNT}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
+                            <Label Content="{Binding TranslationTotalWeight, FallbackValue=TOTAL__WEIGHT}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
+
                             <Label Content="{Binding TranslationSellPricePerJournal, FallbackValue=SELL__PRICE__PER__JOURNAL}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
                             <Label Content="{Binding TranslationGetPrice, FallbackValue=GET__PRICE}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
                         </StackPanel>
@@ -206,14 +210,13 @@
                             <TextBox Text="{Binding CostsPerJournal}" Style="{StaticResource TextBox.Crafting}" common:TextBoxHelper.OnlyNumeric="Int" />
                             <ComboBox VerticalAlignment="Center" Margin="0,1,0,0" MinWidth="96" Width="96" Height="18" 
                                       ItemsSource="{Binding ItemPricesLocationsEmptyJournal}" SelectedValue="{Binding ItemPricesLocationEmptyJournalSelected}" 
-                                      SelectedValuePath="Key" DisplayMemberPath="Value">
-                            </ComboBox>
-                            <Label Content="{Binding RequiredJournalAmount}" ContentStringFormat="{}{0:N2}" Style="{StaticResource Label.Crafting}" />
+                                      SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                                <Label Content="{Binding RequiredJournalAmount}" ContentStringFormat="{}{0:N2}" Style="{StaticResource Label.Crafting}" />
+                            <Label Content="{Binding TotalWeight}" ContentStringFormat="{}{0:N2}" Style="{StaticResource Label.Crafting}" />
                             <TextBox Text="{Binding SellPricePerJournal}" Style="{StaticResource TextBox.Crafting}" common:TextBoxHelper.OnlyNumeric="Int" />
                             <ComboBox VerticalAlignment="Center" Margin="0,1,0,0" MinWidth="96" Width="96" Height="18" 
                                       ItemsSource="{Binding ItemPricesLocationsFullJournal}" SelectedValue="{Binding ItemPricesLocationFullJournalSelected}" 
-                                      SelectedValuePath="Key" DisplayMemberPath="Value">
-                            </ComboBox>
+                                      SelectedValuePath="Key" DisplayMemberPath="Value"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -291,6 +294,12 @@
                     <Separator />
                     <Label Content="{Binding GrandTotal}" ContentStringFormat="{}{0:N0}" Style="{StaticResource Label.Crafting}" HorizontalAlignment="Right" FontWeight="Bold" />
                 </StackPanel>
+            </StackPanel>
+
+            <Label Content="{Binding TranslationFurtherInformation, FallbackValue=FURTHER__INFORMATION}" Style="{StaticResource Label.Crafting.Title}" Margin="5,0" />
+            <StackPanel Orientation="Horizontal" Margin="5,0,5,5">
+                <Label Content="{Binding TranslationTotalWeight, FallbackValue=TOTAL__WEIGHT}" ContentStringFormat="{}{0}:" Style="{StaticResource Label.Crafting}" />
+                <Label Content="{Binding TotalWeight}" ContentStringFormat="{}{0:N2}" Style="{StaticResource Label.Crafting}" />
             </StackPanel>
         </StackPanel>
     </DataTemplate>

@@ -92,7 +92,8 @@ namespace StatisticsAnalysisTool.ViewModels
             TotalItemSells = 0.0d,
             TotalJournalSells = 0.0d,
             TotalResourceCosts = 0.0d,
-            GrandTotal = 0.0d
+            GrandTotal = 0.0d,
+            TotalWeight = 0.0d
         };
 
         public ItemWindowViewModel(ItemWindow itemWindow, Item item)
@@ -262,7 +263,7 @@ namespace StatisticsAnalysisTool.ViewModels
                 CraftingTabVisibility = Visibility.Visible;
 
                 SetEssentialCraftingValues();
-                GetJournalInfo();
+                await GetJournalInfoAsync();
                 await GetCraftInfoAsync();
                 CraftingNotes = CraftingTabController.GetNote(Item.UniqueName);
             }
@@ -286,14 +287,21 @@ namespace StatisticsAnalysisTool.ViewModels
             };
         }
 
-        private void GetJournalInfo()
+        private async Task GetJournalInfoAsync()
         {
-            var craftingJournalType = Item?.FullItemInformation switch
+            Item craftingJournalType = null;
+
+            switch (Item?.FullItemInformation)
             {
-                Weapon weapon => CraftingController.GetCraftingJournalItem(Item.Tier, weapon.CraftingJournalType),
-                EquipmentItem equipmentItem => CraftingController.GetCraftingJournalItem(Item.Tier, equipmentItem.CraftingJournalType),
-                _ => null
-            };
+                case Weapon weapon:
+                    craftingJournalType = CraftingController.GetCraftingJournalItem(Item.Tier, weapon.CraftingJournalType);
+                    craftingJournalType.FullItemInformation = await CraftingController.GetCraftingJournalExtraInfosAsync(Item.Tier, weapon.CraftingJournalType);
+                    break;
+                case EquipmentItem equipmentItem:
+                    craftingJournalType = CraftingController.GetCraftingJournalItem(Item.Tier, equipmentItem.CraftingJournalType);
+                    craftingJournalType.FullItemInformation = await CraftingController.GetCraftingJournalExtraInfosAsync(Item.Tier, equipmentItem.CraftingJournalType);
+                    break;
+            }
 
             if (craftingJournalType == null)
             {
@@ -301,10 +309,11 @@ namespace StatisticsAnalysisTool.ViewModels
             }
 
             RequiredJournalVisibility = Visibility.Visible;
-
+            
             RequiredJournal = new RequiredJournal(this)
             {
                 UniqueName = craftingJournalType.UniqueName,
+                WeightPerJournal = CraftingController.GetWeight(craftingJournalType),
                 CostsPerJournal = 0,
                 CraftingResourceName = craftingJournalType.LocalizedName,
                 Icon = craftingJournalType.Icon,
@@ -346,6 +355,7 @@ namespace StatisticsAnalysisTool.ViewModels
                 {
                     CraftingResourceName = item?.LocalizedName,
                     UniqueName = item?.UniqueName,
+                    WeightPerResource = CraftingController.GetWeight(item),
                     OneProductionAmount = craftResource.Count,
                     Icon = item?.Icon,
                     ResourceCost = 0,
@@ -363,6 +373,8 @@ namespace StatisticsAnalysisTool.ViewModels
 
         public void UpdateCraftingValues()
         {
+            var totalWeight = 0d;
+
             if (CraftingCalculation?.SetupFee != null && EssentialCraftingValues != null)
             {
                 CraftingCalculation.SetupFee = CraftingController.GetSetupFeeCalculation(EssentialCraftingValues.CraftingItemQuantity,
@@ -393,14 +405,17 @@ namespace StatisticsAnalysisTool.ViewModels
                     requiredResource.CraftingQuantity = requiredResource.IsArtifactResource
                         ? (long)Math.Round(CraftingCalculation.PossibleItemCrafting, MidpointRounding.ToPositiveInfinity)
                         : EssentialCraftingValues.CraftingItemQuantity;
+
+                    totalWeight += requiredResource.TotalWeight;
                 }
             }
 
             if (RequiredJournal?.RequiredJournalAmount != null && CraftingCalculation != null)
             {
                 RequiredJournal.RequiredJournalAmount = CraftingController.GetRequiredJournalAmount(Item, CraftingCalculation.PossibleItemCrafting);
+                totalWeight += RequiredJournal?.TotalWeight ?? 0;
             }
-
+            
             if (CraftingCalculation?.AuctionsHouseTax != null && EssentialCraftingValues != null)
             {
                 CraftingCalculation.AuctionsHouseTax =
@@ -426,6 +441,11 @@ namespace StatisticsAnalysisTool.ViewModels
             {
                 CraftingCalculation.AmountCrafted = EssentialCraftingValues.AmountCrafted;
             }
+            
+            if (CraftingCalculation?.TotalWeight != null)
+            {
+                CraftingCalculation.TotalWeight = totalWeight;
+            }
         }
 
         public void UpdateCraftingCalculationTotalResourceCosts()
@@ -433,6 +453,30 @@ namespace StatisticsAnalysisTool.ViewModels
             if (CraftingCalculation?.TotalResourceCosts != null)
             {
                 CraftingCalculation.TotalResourceCosts = RequiredResources.Sum(x => x.TotalCost);
+            }
+        }
+
+        public void UpdateCraftingCalculationTotalWeight()
+        {
+            var totalWeight = 0d;
+
+            foreach (var requiredResource in RequiredResources.ToList())
+            {
+                requiredResource.CraftingQuantity = requiredResource.IsArtifactResource
+                    ? (long)Math.Round(CraftingCalculation.PossibleItemCrafting, MidpointRounding.ToPositiveInfinity)
+                    : EssentialCraftingValues.CraftingItemQuantity;
+
+                totalWeight += requiredResource.TotalWeight;
+            }
+
+            if (RequiredJournal?.RequiredJournalAmount != null && CraftingCalculation != null)
+            {
+                totalWeight += RequiredJournal?.TotalWeight ?? 0;
+            }
+
+            if (CraftingCalculation?.TotalWeight != null)
+            {
+                CraftingCalculation.TotalWeight = totalWeight;
             }
         }
 

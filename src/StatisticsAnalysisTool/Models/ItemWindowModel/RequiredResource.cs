@@ -28,6 +28,8 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
         private List<MarketResponse> _marketResponse = new();
         private Location _itemPricesLocationSelected;
         private DateTime _lastUpdate = DateTime.UtcNow.AddDays(-100);
+        private double _weightPerJournal;
+        private double _totalWeight;
 
         public RequiredResource(ItemWindowViewModel itemWindowViewModel)
         {
@@ -145,6 +147,7 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
             set
             {
                 _totalCost = value;
+                TotalWeight = (TotalCost <= 0) ? 0 : WeightPerResource * TotalQuantity;
                 _itemWindowViewModel.UpdateCraftingCalculationTotalResourceCosts();
                 OnPropertyChanged();
             }
@@ -163,6 +166,27 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
             }
         }
 
+        public double WeightPerResource
+        {
+            get => _weightPerJournal;
+            set
+            {
+                _weightPerJournal = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double TotalWeight
+        {
+            get => _totalWeight;
+            set
+            {
+                _totalWeight = value;
+                _itemWindowViewModel.UpdateCraftingCalculationTotalWeight();
+                OnPropertyChanged();
+            }
+        }
+
         #region Commands
 
         public void CopyItemNameToClipboard()
@@ -171,16 +195,16 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
         }
 
         private ICommand _opyItemNameToClipboardCommand;
-
         public ICommand CopyItemNameToClipboardCommand => _opyItemNameToClipboardCommand ??= new CommandHandler(CopyItemNameToClipboard, true);
 
         #endregion
 
-        public string TranslationCost => LanguageController.Translation("COST");
-        public string TranslationOneProductionAmount => LanguageController.Translation("ONE_PRODUCTION_AMOUNT");
-        public string TranslationTotalQuantity => LanguageController.Translation("TOTAL_QUANTITY");
-        public string TranslationTotalCost => LanguageController.Translation("TOTAL_COST");
-        public string TranslationGetPrice => LanguageController.Translation("GET_PRICE");
+        public static string TranslationCost => LanguageController.Translation("COST");
+        public static string TranslationOneProductionAmount => LanguageController.Translation("ONE_PRODUCTION_AMOUNT");
+        public static string TranslationTotalQuantity => LanguageController.Translation("TOTAL_QUANTITY");
+        public static string TranslationTotalCost => LanguageController.Translation("TOTAL_COST");
+        public static string TranslationGetPrice => LanguageController.Translation("GET_PRICE");
+        public static string TranslationTotalWeight => LanguageController.Translation("TOTAL_WEIGHT");
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -27,6 +27,8 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
         private DateTime _lastUpdateFullJournal = DateTime.UtcNow.AddDays(-100);
         private Location _itemPricesLocationEmptyJournalSelected;
         private Location _itemPricesLocationFullJournalSelected;
+        private double _weightPerJournal;
+        private double _totalWeight;
 
         private static readonly KeyValuePair<Location, string>[] ItemPricesLocations = {
             new (Location.Martlock, WorldData.GetUniqueNameOrDefault((int)Location.Martlock)),
@@ -141,6 +143,7 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
             set
             {
                 _requiredJournalAmount = value;
+                TotalWeight = (_requiredJournalAmount <= 0) ? 0 : WeightPerJournal * _requiredJournalAmount;
                 OnPropertyChanged();
             }
         }
@@ -156,6 +159,26 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
             }
         }
 
+        public double WeightPerJournal
+        {
+            get => _weightPerJournal;
+            set
+            {
+                _weightPerJournal = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double TotalWeight
+        {
+            get => _totalWeight;
+            set
+            {
+                _totalWeight = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Commands
 
         public void CopyItemNameToClipboard()
@@ -164,16 +187,16 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
         }
 
         private ICommand _opyItemNameToClipboardCommand;
-
         public ICommand CopyItemNameToClipboardCommand => _opyItemNameToClipboardCommand ??= new CommandHandler(CopyItemNameToClipboard, true);
 
         #endregion
 
-        public string TranslationRequiredJournals => LanguageController.Translation("REQUIRED_JOURNALS");
-        public string TranslationCostsPerJournal => LanguageController.Translation("COSTS_PER_JOURNAL");
-        public string TranslationRequiredJournalAmount => LanguageController.Translation("REQUIRED_JOURNAL_AMOUNT");
-        public string TranslationSellPricePerJournal => LanguageController.Translation("SELL_PRICE_PER_JOURNAL");
-        public string TranslationGetPrice => LanguageController.Translation("GET_PRICE");
+        public static string TranslationRequiredJournals => LanguageController.Translation("REQUIRED_JOURNALS");
+        public static string TranslationCostsPerJournal => LanguageController.Translation("COSTS_PER_JOURNAL");
+        public static string TranslationRequiredJournalAmount => LanguageController.Translation("REQUIRED_JOURNAL_AMOUNT");
+        public static string TranslationSellPricePerJournal => LanguageController.Translation("SELL_PRICE_PER_JOURNAL");
+        public static string TranslationGetPrice => LanguageController.Translation("GET_PRICE");
+        public static string TranslationTotalWeight => LanguageController.Translation("TOTAL_WEIGHT");
 
         public event PropertyChangedEventHandler PropertyChanged;
 

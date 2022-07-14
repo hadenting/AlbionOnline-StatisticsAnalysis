@@ -20,6 +20,7 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
         private double _otherCosts;
         private int _amountCrafted;
         private bool _isAmountCraftedRelevant;
+        private double _totalWeight;
 
         private double GetTotalCosts()
         {
@@ -178,6 +179,16 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
             }
         }
 
+        public double TotalWeight
+        {
+            get => _totalWeight;
+            set
+            {
+                _totalWeight = value;
+                OnPropertyChanged();
+            }
+        }
+
         public static string TranslationCalculation => LanguageController.Translation("CALCULATION");
         public static string TranslationPossibleCrafting => LanguageController.Translation("POSSIBLE_CRAFTING");
         public static string TranslationPossibleItemCrafting => LanguageController.Translation("POSSIBLE_ITEM_CRAFTING");
@@ -193,6 +204,8 @@ namespace StatisticsAnalysisTool.Models.ItemWindowModel
         public static string TranslationTotalJournalSells => LanguageController.Translation("TOTAL_JOURNAL_SELLS");
         public static string TranslationTotalSells => LanguageController.Translation("TOTAL_SELLS");
         public static string TranslationGrandTotal => LanguageController.Translation("GRAND_TOTAL");
+        public static string TranslationFurtherInformation => LanguageController.Translation("FURTHER_INFORMATION");
+        public static string TranslationTotalWeight => LanguageController.Translation("TOTAL_WEIGHT");
 
         public event PropertyChangedEventHandler PropertyChanged;
 

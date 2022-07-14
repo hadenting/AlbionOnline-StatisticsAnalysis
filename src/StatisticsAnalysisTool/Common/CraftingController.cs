@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace StatisticsAnalysisTool.Common
 {
@@ -45,6 +46,38 @@ namespace StatisticsAnalysisTool.Common
             return totalJournalFame / MaxJournalFame((ItemTier)item.Tier);
         }
 
+        public static double GetWeight(Item item)
+        {
+            if (item == null)
+            {
+                return 0;
+            }
+
+            try
+            {
+                var weight = item.FullItemInformation switch
+                {
+                    Weapon weapon => double.Parse(weapon.Weight),
+                    EquipmentItem equipmentItem => double.Parse(equipmentItem.Weight),
+                    Mount mount => double.Parse(mount.Weight),
+                    ConsumableItem consumableItem => double.Parse(consumableItem.Weight),
+                    SimpleItem simpleItem => double.Parse(simpleItem.Weight),
+                    ConsumableFromInventoryItem consumableFromInventoryItem => double.Parse(consumableFromInventoryItem.Weight),
+                    JournalItem journalItem => double.Parse(journalItem.Weight),
+                    HideoutItem hideoutItem => double.Parse(hideoutItem.Weight),
+                    LabourerContract labourerContract => double.Parse(labourerContract.Weight),
+                    FarmableItem farmableItem => double.Parse(farmableItem.Weight),
+                    _ => 0
+                };
+
+                return weight;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
         public static Item GetCraftingJournalItem(int tier, CraftingJournalType craftingJournalType)
         {
             return craftingJournalType switch
@@ -53,6 +86,18 @@ namespace StatisticsAnalysisTool.Common
                 CraftingJournalType.JournalHunter => ItemController.GetItemByUniqueName($"T{tier}_JOURNAL_HUNTER_EMPTY"),
                 CraftingJournalType.JournalWarrior => ItemController.GetItemByUniqueName($"T{tier}_JOURNAL_WARRIOR_EMPTY"),
                 CraftingJournalType.JournalToolMaker => ItemController.GetItemByUniqueName($"T{tier}_JOURNAL_TOOLMAKER_EMPTY"),
+                _ => null
+            };
+        }
+
+        public static async Task<ItemJsonObject> GetCraftingJournalExtraInfosAsync(int tier, CraftingJournalType craftingJournalType)
+        {
+            return craftingJournalType switch
+            {
+                CraftingJournalType.JournalMage => await ItemController.GetSpecificItemInfoAsync($"T{tier}_JOURNAL_MAGE"),
+                CraftingJournalType.JournalHunter => await ItemController.GetSpecificItemInfoAsync($"T{tier}_JOURNAL_HUNTER"),
+                CraftingJournalType.JournalWarrior => await ItemController.GetSpecificItemInfoAsync($"T{tier}_JOURNAL_WARRIOR"),
+                CraftingJournalType.JournalToolMaker => await ItemController.GetSpecificItemInfoAsync($"T{tier}_JOURNAL_TOOLMAKER"),
                 _ => null
             };
         }
